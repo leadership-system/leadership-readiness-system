@@ -8,9 +8,11 @@
 // DOM ELEMENTS
 // ==========================================
 
-const employmentForm = document.getElementById("employmentForm");
-const logoutBtn = document.getElementById("logoutBtn");
-const message = document.getElementById("message");
+const employmentForm =
+    document.getElementById("employmentForm");
+
+const message =
+    document.getElementById("message");
 
 const positionTableBody =
     document.getElementById("positionTableBody");
@@ -25,6 +27,56 @@ const EVIDENCE_BUCKET = "evidence";
 
 
 // ==========================================
+// PROFILE DROPDOWN
+// ==========================================
+
+const profileBtn =
+    document.getElementById("profileBtn");
+
+const profileDropdown =
+    document.getElementById("profileDropdown");
+
+const dropdownName =
+    document.getElementById("dropdownName");
+
+const dropdownStaffId =
+    document.getElementById("dropdownStaffId");
+
+const dropdownLogoutBtn =
+    document.getElementById("dropdownLogoutBtn");
+
+
+// ==========================================
+// PROFILE BUTTON - OPEN / CLOSE DROPDOWN
+// ==========================================
+
+profileBtn?.addEventListener(
+    "click",
+    function (event) {
+
+        event.stopPropagation();
+
+        profileDropdown?.classList.toggle("show");
+
+    }
+);
+
+
+// ==========================================
+// CLOSE DROPDOWN WHEN CLICK OUTSIDE
+// ==========================================
+
+document.addEventListener(
+    "click",
+    function () {
+
+        profileDropdown?.classList.remove("show");
+
+    }
+);
+
+
+// ==========================================
 // CHECK USER
 // ==========================================
 
@@ -36,11 +88,16 @@ async function checkUser() {
     } = await supabaseClient.auth.getUser();
 
 
+    // ==========================================
+    // CHECK LOGIN
+    // ==========================================
+
     if (error || !user) {
 
         window.location.href = "index.html";
 
         return;
+
     }
 
 
@@ -50,6 +107,58 @@ async function checkUser() {
     );
 
 
+    // ==========================================
+    // LOAD PROFILE FOR DROPDOWN
+    // ==========================================
+
+    const {
+        data: profileData,
+        error: profileError
+    } = await supabaseClient
+        .from("profiles")
+        .select("full_name, staff_id")
+        .eq("id", user.id)
+        .single();
+
+
+    if (profileError) {
+
+        console.error(
+            "Load Profile Error:",
+            profileError
+        );
+
+    }
+
+
+    // ==========================================
+    // DISPLAY NAME & STAFF ID
+    // ==========================================
+
+    if (profileData) {
+
+        if (dropdownName) {
+
+            dropdownName.textContent =
+                profileData.full_name || "-";
+
+        }
+
+
+        if (dropdownStaffId) {
+
+            dropdownStaffId.textContent =
+                profileData.staff_id || "-";
+
+        }
+
+    }
+
+
+    // ==========================================
+    // LOAD EMPLOYMENT DATA
+    // ==========================================
+
     await loadEmployment(user.id);
 
     await loadPositionHistory(user.id);
@@ -57,6 +166,7 @@ async function checkUser() {
     await loadApcHistory(user.id);
 
     await loadLnptHistory(user.id);
+
 }
 
 
@@ -82,6 +192,7 @@ function escapeHtml(value) {
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
+
 }
 
 
@@ -206,6 +317,7 @@ async function uploadEvidence(
 
 
     return data.path;
+
 }
 
 
@@ -259,10 +371,12 @@ async function getEvidenceUrl(path) {
         );
 
         return null;
+
     }
 
 
     return data?.signedUrl || null;
+
 }
 
 
@@ -290,12 +404,14 @@ async function loadEmployment(userId) {
         );
 
         return;
+
     }
 
 
     if (!data) {
 
         return;
+
     }
 
 
@@ -453,73 +569,149 @@ function addPositionRow(data = {}) {
 
     positionTableBody.appendChild(row);
 
-    const fromInput = row.querySelector(".position-from");
-    const toInput = row.querySelector(".position-to");
-    const durationInput = row.querySelector(".position-duration");
+
+    const fromInput =
+        row.querySelector(".position-from");
+
+    const toInput =
+        row.querySelector(".position-to");
+
+    const durationInput =
+        row.querySelector(".position-duration");
+
 
     function calculateDuration() {
-        const fromValue = fromInput.value;
-        const toValue = toInput.value;
+
+        const fromValue =
+            fromInput.value;
+
+        const toValue =
+            toInput.value;
+
 
         if (!fromValue || !toValue) {
+
             durationInput.value = "";
+
             return;
+
         }
 
-        const fromDate = new Date(fromValue);
-        const toDate = new Date(toValue);
+
+        const fromDate =
+            new Date(fromValue);
+
+        const toDate =
+            new Date(toValue);
+
 
         if (toDate < fromDate) {
-            durationInput.value = "Tarikh tidak sah";
+
+            durationInput.value =
+                "Tarikh tidak sah";
+
             return;
+
         }
 
-        let years = toDate.getFullYear() - fromDate.getFullYear();
-        let months = toDate.getMonth() - fromDate.getMonth();
-        let days = toDate.getDate() - fromDate.getDate();
+
+        let years =
+            toDate.getFullYear() -
+            fromDate.getFullYear();
+
+        let months =
+            toDate.getMonth() -
+            fromDate.getMonth();
+
+        let days =
+            toDate.getDate() -
+            fromDate.getDate();
+
 
         if (days < 0) {
+
             months--;
 
-            const previousMonth = new Date(
-                toDate.getFullYear(),
-                toDate.getMonth(),
-                0
-            );
+            const previousMonth =
+                new Date(
+                    toDate.getFullYear(),
+                    toDate.getMonth(),
+                    0
+                );
 
-            days += previousMonth.getDate();
+            days +=
+                previousMonth.getDate();
+
         }
+
 
         if (months < 0) {
+
             years--;
+
             months += 12;
+
         }
+
 
         let result = [];
 
+
         if (years > 0) {
-            result.push(`${years} tahun`);
+
+            result.push(
+                `${years} tahun`
+            );
+
         }
+
 
         if (months > 0) {
-            result.push(`${months} bulan`);
+
+            result.push(
+                `${months} bulan`
+            );
+
         }
+
 
         if (days > 0) {
-            result.push(`${days} hari`);
+
+            result.push(
+                `${days} hari`
+            );
+
         }
+
 
         if (result.length === 0) {
-            result.push("0 hari");
+
+            result.push(
+                "0 hari"
+            );
+
         }
 
-        durationInput.value = result.join(" ");
+
+        durationInput.value =
+            result.join(" ");
+
     }
 
-    fromInput.addEventListener("change", calculateDuration);
-    toInput.addEventListener("change", calculateDuration);
 
-        calculateDuration();
+    fromInput.addEventListener(
+        "change",
+        calculateDuration
+    );
+
+    toInput.addEventListener(
+        "change",
+        calculateDuration
+    );
+
+
+    calculateDuration();
+
 
     // ==========================================
     // DELETE
@@ -567,10 +759,12 @@ async function loadPositionHistory(userId) {
         );
 
         return;
+
     }
 
 
-    positionTableBody.innerHTML = "";
+    positionTableBody.innerHTML =
+        "";
 
 
     if (
@@ -628,14 +822,11 @@ function addApcRow(data = {}) {
 
     row.innerHTML = `
 
-        <!-- APC YEAR -->
-
         <div class="apc-input-group">
 
             <label>
                 Tahun APC
             </label>
-
 
             <input
                 type="number"
@@ -649,14 +840,11 @@ function addApcRow(data = {}) {
         </div>
 
 
-        <!-- EVIDENCE -->
-
         <div class="apc-input-group">
 
             <label>
                 Dokumen Sokongan
             </label>
-
 
             <input
                 type="file"
@@ -664,8 +852,6 @@ function addApcRow(data = {}) {
                 accept=".pdf,.jpg,.jpeg,.png"
             >
 
-
-            <!-- EXISTING EVIDENCE -->
 
             <div class="existing-evidence">
 
@@ -685,8 +871,6 @@ function addApcRow(data = {}) {
             </div>
 
 
-            <!-- STATUS -->
-
             <small class="evidence-status">
 
                 ${
@@ -699,8 +883,6 @@ function addApcRow(data = {}) {
 
         </div>
 
-
-        <!-- DELETE -->
 
         <button
             type="button"
@@ -741,12 +923,6 @@ function addApcRow(data = {}) {
                         row.dataset.evidencePath;
 
 
-                    console.log(
-                        "APC Evidence Path:",
-                        path
-                    );
-
-
                     if (!path) {
 
                         throw new Error(
@@ -757,15 +933,7 @@ function addApcRow(data = {}) {
 
 
                     const url =
-                        await getEvidenceUrl(
-                            path
-                        );
-
-
-                    console.log(
-                        "APC Evidence URL:",
-                        url
-                    );
+                        await getEvidenceUrl(path);
 
 
                     if (!url) {
@@ -812,9 +980,7 @@ function addApcRow(data = {}) {
     // ==========================================
 
     const fileInput =
-        row.querySelector(
-            ".apc-file"
-        );
+        row.querySelector(".apc-file");
 
 
     fileInput.addEventListener(
@@ -906,7 +1072,8 @@ async function loadApcHistory(userId) {
     );
 
 
-    apcList.innerHTML = "";
+    apcList.innerHTML =
+        "";
 
 
     if (
@@ -922,12 +1089,6 @@ async function loadApcHistory(userId) {
 
 
     data.forEach(item => {
-
-        console.log(
-            "APC Record:",
-            item
-        );
-
 
         addApcRow(item);
 
@@ -1080,16 +1241,8 @@ function addLnptRow(
                         row.dataset.evidencePath;
 
 
-                    console.log(
-                        "LNPT Evidence Path:",
-                        path
-                    );
-
-
                     const url =
-                        await getEvidenceUrl(
-                            path
-                        );
+                        await getEvidenceUrl(path);
 
 
                     if (!url) {
@@ -1531,8 +1684,7 @@ employmentForm.addEventListener(
                             fromDate || null,
 
                         to_date:
-                            toDate || null,
-
+                            toDate || null
 
                     });
 
@@ -2012,7 +2164,7 @@ employmentForm.addEventListener(
             // ======================================
 
             message.innerText =
-                "Maklumat Pekerjaan berjaya disimpan!";
+                "Maklumat Pekerjaan berjaya disimpan.";
 
 
             message.style.color =
@@ -2046,25 +2198,20 @@ employmentForm.addEventListener(
 
 
 // ==========================================
-// LOGOUT
+// DROPDOWN LOGOUT
 // ==========================================
 
-if (logoutBtn) {
+dropdownLogoutBtn?.addEventListener(
+    "click",
+    async function () {
 
-    logoutBtn.addEventListener(
-        "click",
-        async function () {
+        await supabaseClient.auth.signOut();
 
-            await supabaseClient.auth.signOut();
+        window.location.href =
+            "index.html";
 
-
-            window.location.href =
-                "index.html";
-
-        }
-    );
-
-}
+    }
+);
 
 
 // ==========================================

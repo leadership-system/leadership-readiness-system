@@ -4,6 +4,43 @@
 
 
 // ==========================================
+// PROFILE DROPDOWN
+// ==========================================
+
+const profileBtn =
+    document.getElementById("profileBtn");
+
+const profileDropdown =
+    document.getElementById("profileDropdown");
+
+const dropdownName =
+    document.getElementById("dropdownName");
+
+const dropdownStaffId =
+    document.getElementById("dropdownStaffId");
+
+const dropdownLogoutBtn =
+    document.getElementById("dropdownLogoutBtn");
+
+
+// ==========================================
+// HELPER
+// ==========================================
+
+function setText(element, value) {
+
+    if (!element) return;
+
+    element.textContent =
+        value !== null &&
+        value !== undefined &&
+        value !== ""
+            ? value
+            : "-";
+}
+
+
+// ==========================================
 // POSITION SCORE
 // ==========================================
 
@@ -28,69 +65,163 @@ const positionScores = {
 // START
 // ==========================================
 
-document.addEventListener("DOMContentLoaded", async () => {
-
-    const {
-        data: { user },
-        error
-    } = await supabaseClient.auth.getUser();
+document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
 
 
-    if (error || !user) {
+        // ==========================================
+        // CHECK LOGIN
+        // ==========================================
 
-        window.location.href = "index.html";
+        const {
+            data: { user },
+            error
+        } = await supabaseClient.auth.getUser();
 
-        return;
+
+        if (error || !user) {
+
+            window.location.href =
+                "index.html";
+
+            return;
+
+        }
+
+
+        // ==========================================
+        // LOAD PROFILE
+        // ==========================================
+
+        const {
+            data: profile,
+            error: profileError
+        } = await supabaseClient
+            .from("profiles")
+            .select("full_name, staff_id")
+            .eq("id", user.id)
+            .single();
+
+
+        if (profileError) {
+
+            console.error(
+                "Profile dropdown error:",
+                profileError
+            );
+
+        }
+
+
+        if (profile) {
+
+            setText(
+                dropdownName,
+                profile.full_name
+            );
+
+            setText(
+                dropdownStaffId,
+                profile.staff_id
+            );
+
+        }
+
+
+        // ==========================================
+        // LOAD LEADERSHIP HISTORY
+        // ==========================================
+
+        await loadLeadershipHistory(user.id);
+
+
+        // ==========================================
+        // ADD NEW ROW
+        // ==========================================
+
+        document
+            .getElementById("addPositionBtn")
+            ?.addEventListener(
+                "click",
+                () => {
+
+                    addLeadershipRow();
+
+                }
+            );
+
+
+        // ==========================================
+        // SAVE
+        // ==========================================
+
+        document
+            .getElementById("saveBtn")
+            ?.addEventListener(
+                "click",
+                async () => {
+
+                    await saveLeadershipHistory(
+                        user.id
+                    );
+
+                }
+            );
+
+
+        // ==========================================
+        // PROFILE BUTTON
+        // ==========================================
+
+        profileBtn?.addEventListener(
+            "click",
+            function (event) {
+
+                event.stopPropagation();
+
+                profileDropdown?.classList.toggle(
+                    "show"
+                );
+
+            }
+        );
+
+
+        // ==========================================
+        // CLOSE DROPDOWN
+        // ==========================================
+
+        document.addEventListener(
+            "click",
+            function () {
+
+                profileDropdown?.classList.remove(
+                    "show"
+                );
+
+            }
+        );
+
+
+        // ==========================================
+        // DROPDOWN LOGOUT
+        // ==========================================
+
+        dropdownLogoutBtn?.addEventListener(
+            "click",
+            async function () {
+
+                await supabaseClient.auth.signOut();
+
+                window.location.href =
+                    "index.html";
+
+            }
+        );
 
     }
-
-
-    await loadLeadershipHistory(user.id);
-
-
-    // ==========================================
-    // ADD NEW ROW
-    // ==========================================
-
-    document
-        .getElementById("addPositionBtn")
-        .addEventListener("click", () => {
-
-            addLeadershipRow();
-
-        });
-
-
-    // ==========================================
-    // SAVE
-    // ==========================================
-
-    document
-        .getElementById("saveBtn")
-        .addEventListener("click", async () => {
-
-            await saveLeadershipHistory(user.id);
-
-        });
-
-
-    // ==========================================
-    // LOGOUT
-    // ==========================================
-
-    document
-        .getElementById("logoutBtn")
-        .addEventListener("click", async () => {
-
-            await supabaseClient.auth.signOut();
-
-            window.location.href = "index.html";
-
-        });
-
-});
-
-
+);
 // ==========================================
 // LOAD EXISTING DATA
 // ==========================================

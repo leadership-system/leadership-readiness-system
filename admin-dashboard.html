@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - Leadership Readiness System</title>
+
+    <link rel="stylesheet" href="admin-dashboard.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+    <!-- ==============================
+         ADMIN DASHBOARD
+    =============================== -->
+
+    <div class="dashboard-container">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="sidebar-header">
+                <h2>Individual Talent Roadmap (ITDP)</h2>
+                <span>Readiness System</span>
+            </div>
+
+            <nav class="sidebar-menu">
+
+                <a href="admin-dashboard.html" class="active">
+                    Dashboard
+                </a>
+
+                <a href="#">
+                    Semua Staf
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <button id="logoutBtn">
+                    Log Keluar
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- HEADER -->
+            <header class="dashboard-header">
+
+                <div>
+                    <h1>Admin Dashboard</h1>
+
+                    <p>
+                        Leadership Readiness System
+                    </p>
+                </div>
+
+                <div class="admin-profile">
+
+                    <span id="adminName">
+                        Admin
+                    </span>
+
+                </div>
+
+            </header>
+
+
+            <!-- WELCOME -->
+            <section class="welcome-section">
+
+                <h2>
+                    Selamat Datang, <span id="welcomeAdminName">Admin</span>
+                </h2>
+
+                <p>
+                    Pantau perkembangan dan kesediaan kepimpinan staf.
+                </p>
+
+            </section>
+
+
+            <!-- SUMMARY CARDS -->
+            <section class="summary-cards">
+
+                <div class="dashboard-card">
+
+                    <h3>Jumlah Staf</h3>
+
+                    <strong id="totalStaff">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <h3>PKA</h3>
+
+                    <strong id="totalPka">
+                        0
+                    </strong>
+
+                    <span>
+                        staf
+                    </span>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <h3>PKI</h3>
+
+                    <strong id="totalPki">
+                        0
+                    </strong>
+
+                    <span>
+                        staf
+                    </span>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <h3>Sejarah Jawatan</h3>
+
+                    <strong id="totalLeadership">
+                        0
+                    </strong>
+
+                    <span>
+                        staf
+                    </span>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <h3>Ketampakan</h3>
+
+                    <strong id="totalVisibility">
+                        0
+                    </strong>
+
+                    <span>
+                        staf
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- STAFF TABLE -->
+            <section class="dashboard-card staff-section">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h2>
+                            Senarai Staf
+                        </h2>
+
+                        <p>
+                            Maklumat readiness semua staf
+                        </p>
+
+                    </div>
+
+
+                    <div class="search-box">
+
+                        <input
+                            type="text"
+                            id="staffSearch"
+                            placeholder="Cari staf..."
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Staff ID
+                                </th>
+
+                                <th>
+                                    Nama
+                                </th>
+
+                                <th>
+                                    Jabatan
+                                </th>
+
+                                <th>
+                                    PKA
+                                </th>
+
+                                <th>
+                                    PKI
+                                </th>
+
+                                <th>
+                                    Jawatan
+                                </th>
+
+                                <th>
+                                    Ketampakan
+                                </th>
+
+                                <th>
+                                    Tindakan
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="staffTableBody">
+
+                            <tr>
+
+                                <td colspan="8">
+                                    Memuatkan data...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="supabase.js"></script>
+
+    <script src="admin-dashboard.js"></script>
+
+</body>
+
+</html>

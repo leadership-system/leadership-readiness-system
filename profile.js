@@ -5,11 +5,41 @@
 const profileForm =
     document.getElementById("profileForm");
 
-const logoutBtn =
-    document.getElementById("logoutBtn");
-
 const message =
     document.getElementById("message");
+
+// PROFILE DROPDOWN
+const profileBtn =
+    document.getElementById("profileBtn");
+
+const profileDropdown =
+    document.getElementById("profileDropdown");
+
+const dropdownName =
+    document.getElementById("dropdownName");
+
+const dropdownStaffId =
+    document.getElementById("dropdownStaffId");
+
+const dropdownLogoutBtn =
+    document.getElementById("dropdownLogoutBtn");
+
+
+// ==========================================
+// HELPER
+// ==========================================
+
+function setText(element, value) {
+
+    if (!element) return;
+
+    element.textContent =
+        value !== null &&
+        value !== undefined &&
+        value !== ""
+            ? value
+            : "-";
+}
 
 
 // ==========================================
@@ -52,18 +82,29 @@ async function loadProfile(user) {
 
     if (error) {
 
-        console.error("Load profile error:", error);
+        console.error(
+            "Load profile error:",
+            error
+        );
 
-        message.innerText =
-            "Unable to load profile information.";
+        if (message) {
 
-        message.style.color = "red";
+            message.innerText =
+                "Unable to load profile information.";
+
+            message.style.color = "red";
+
+        }
 
         return;
     }
 
 
     if (data) {
+
+        // ==========================================
+        // FORM DATA
+        // ==========================================
 
         document.getElementById("staff_id").value =
             data.staff_id || "";
@@ -89,6 +130,21 @@ async function loadProfile(user) {
         document.getElementById("service_years").value =
             data.service_years ?? "";
 
+
+        // ==========================================
+        // PROFILE DROPDOWN
+        // ==========================================
+
+        setText(
+            dropdownName,
+            data.full_name
+        );
+
+        setText(
+            dropdownStaffId,
+            data.staff_id
+        );
+
     }
 }
 
@@ -101,7 +157,6 @@ profileForm.addEventListener(
     "submit",
     async function(event) {
 
-        // VERY IMPORTANT
         event.preventDefault();
         event.stopPropagation();
 
@@ -291,6 +346,18 @@ profileForm.addEventListener(
                 "green";
 
 
+            // Update dropdown immediately
+            setText(
+                dropdownName,
+                fullName
+            );
+
+            setText(
+                dropdownStaffId,
+                staffID
+            );
+
+
         } catch (error) {
 
             console.error(
@@ -315,7 +382,7 @@ profileForm.addEventListener(
 // LOGOUT
 // ==========================================
 
-logoutBtn.addEventListener(
+dropdownLogoutBtn?.addEventListener(
     "click",
     async function() {
 
@@ -323,6 +390,32 @@ logoutBtn.addEventListener(
 
         window.location.href =
             "index.html";
+
+    }
+);
+
+
+// ==========================================
+// PROFILE DROPDOWN
+// ==========================================
+
+profileBtn?.addEventListener(
+    "click",
+    function(event) {
+
+        event.stopPropagation();
+
+        profileDropdown?.classList.toggle("show");
+
+    }
+);
+
+
+document.addEventListener(
+    "click",
+    function() {
+
+        profileDropdown?.classList.remove("show");
 
     }
 );

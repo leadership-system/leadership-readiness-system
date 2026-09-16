@@ -294,16 +294,54 @@ const activityNames = {
 // PAGE LOAD
 // ==========================================
 
+// ==========================================
+// PROFILE DROPDOWN
+// ==========================================
+
+const profileBtn =
+    document.getElementById("profileBtn");
+
+const profileDropdown =
+    document.getElementById("profileDropdown");
+
+const dropdownName =
+    document.getElementById("dropdownName");
+
+const dropdownStaffId =
+    document.getElementById("dropdownStaffId");
+
+const dropdownLogoutBtn =
+    document.getElementById("dropdownLogoutBtn");
+
+
+function setText(element, value) {
+
+    if (!element) return;
+
+    element.textContent =
+        value !== null &&
+        value !== undefined &&
+        value !== ""
+            ? value
+            : "-";
+}
+
+
+// ==========================================
+// PAGE LOAD
+// ==========================================
+
 document.addEventListener(
     "DOMContentLoaded",
     async () => {
 
         const {
-            data: { user }
+            data: { user },
+            error
         } = await supabaseClient.auth.getUser();
 
 
-        if (!user) {
+        if (error || !user) {
 
             window.location.href =
                 "index.html";
@@ -313,34 +351,116 @@ document.addEventListener(
         }
 
 
-        // Load existing records
-        await loadVisibility(user.id);
+        // ==========================================
+        // LOAD PROFILE
+        // ==========================================
+
+        const {
+            data: profile,
+            error: profileError
+        } = await supabaseClient
+            .from("profiles")
+            .select("full_name, staff_id")
+            .eq("id", user.id)
+            .single();
 
 
-        // Logout
-        document
-            .getElementById("logoutBtn")
-            .addEventListener(
-                "click",
-                async () => {
+        if (profileError) {
 
-                    await supabaseClient.auth.signOut();
-
-                    window.location.href =
-                        "index.html";
-
-                }
+            console.error(
+                "Profile dropdown error:",
+                profileError
             );
 
+        }
 
-        // Save
+
+        if (profile) {
+
+            setText(
+                dropdownName,
+                profile.full_name
+            );
+
+            setText(
+                dropdownStaffId,
+                profile.staff_id
+            );
+
+        }
+
+
+        // ==========================================
+        // LOAD EXISTING RECORDS
+        // ==========================================
+
+        await loadVisibility(
+            user.id
+        );
+
+
+        // ==========================================
+        // PROFILE DROPDOWN
+        // ==========================================
+
+        profileBtn?.addEventListener(
+            "click",
+            function (event) {
+
+                event.stopPropagation();
+
+                profileDropdown?.classList.toggle(
+                    "show"
+                );
+
+            }
+        );
+
+
+        // Close dropdown when clicking outside
+
+        document.addEventListener(
+            "click",
+            function () {
+
+                profileDropdown?.classList.remove(
+                    "show"
+                );
+
+            }
+        );
+
+
+        // ==========================================
+        // LOGOUT
+        // ==========================================
+
+        dropdownLogoutBtn?.addEventListener(
+            "click",
+            async function () {
+
+                await supabaseClient.auth.signOut();
+
+                window.location.href =
+                    "index.html";
+
+            }
+        );
+
+
+        // ==========================================
+        // SAVE
+        // ==========================================
+
         document
             .getElementById("saveBtn")
-            .addEventListener(
+            ?.addEventListener(
                 "click",
                 async () => {
 
-                    await saveVisibility(user.id);
+                    await saveVisibility(
+                        user.id
+                    );
 
                 }
             );

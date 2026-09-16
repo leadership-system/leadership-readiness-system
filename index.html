@@ -206,23 +206,66 @@
                 }
 
 
-                // LOGIN SUCCESS
-
-                message.innerText =
-                    "Login successful!";
-
-                message.style.color =
-                    "#ccffcc";
 
 
-                // Go profile page
+                    // LOGIN SUCCESS
 
-                setTimeout(function() {
+                    message.innerText =
+                        "Login successful!";
 
-                    window.location.href =
-                        "profile.html";
+                    message.style.color =
+                        "#ccffcc";
 
-                }, 500);
+
+                    // CHECK USER ROLE
+
+                    const {
+                        data: profile,
+                        error: profileError
+                    } = await supabaseClient
+                        .from("profiles")
+                        .select("role")
+                        .eq("id", data.user.id)
+                        .single();
+
+
+                    if (profileError) {
+
+                        console.error(profileError);
+
+                        message.innerText =
+                            "Unable to check user role.";
+
+                        message.style.color =
+                            "#ffdddd";
+
+                        loginBtn.disabled = false;
+
+                        loginBtn.innerText =
+                            "Login";
+
+                        return;
+
+                    }
+
+
+                    // REDIRECT BASED ON ROLE
+
+                    setTimeout(function() {
+
+                        if (profile.role === "admin") {
+
+                            window.location.href =
+                                "admin-dashboard.html";
+
+                        } else {
+
+                            window.location.href =
+                                "dashboard.html";
+
+                        }
+
+                    }, 500);
 
             }
 

@@ -6,54 +6,194 @@ const EVIDENCE_BUCKET = "evidence";
 
 
 // ==========================================
+// PROFILE DROPDOWN
+// ==========================================
+
+const profileBtn =
+    document.getElementById("profileBtn");
+
+const profileDropdown =
+    document.getElementById("profileDropdown");
+
+const dropdownName =
+    document.getElementById("dropdownName");
+
+const dropdownStaffId =
+    document.getElementById("dropdownStaffId");
+
+const dropdownLogoutBtn =
+    document.getElementById("dropdownLogoutBtn");
+
+
+// ==========================================
+// HELPER
+// ==========================================
+
+function setText(element, value) {
+
+    if (!element) return;
+
+    element.textContent =
+        value !== null &&
+        value !== undefined &&
+        value !== ""
+            ? value
+            : "-";
+}
+
+
+// ==========================================
 // PAGE LOAD
 // ==========================================
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
 
-    const message = document.getElementById("message");
-
-    const {
-        data: { user },
-        error: userError
-    } = await supabaseClient.auth.getUser();
+        const message =
+            document.getElementById("message");
 
 
-    if (userError || !user) {
+        // ==========================================
+        // CHECK LOGIN
+        // ==========================================
 
-        window.location.href = "index.html";
-        return;
+        const {
+            data: { user },
+            error: userError
+        } = await supabaseClient.auth.getUser();
+
+
+        if (userError || !user) {
+
+            window.location.href =
+                "index.html";
+
+            return;
+
+        }
+
+
+        // ==========================================
+        // LOAD PROFILE
+        // ==========================================
+
+        const {
+            data: profile,
+            error: profileError
+        } = await supabaseClient
+            .from("profiles")
+            .select("full_name, staff_id")
+            .eq("id", user.id)
+            .single();
+
+
+        if (profileError) {
+
+            console.error(
+                "Profile dropdown error:",
+                profileError
+            );
+
+        }
+
+
+        if (profile) {
+
+            setText(
+                dropdownName,
+                profile.full_name
+            );
+
+            setText(
+                dropdownStaffId,
+                profile.staff_id
+            );
+
+        }
+
+
+        // ==========================================
+        // LOAD TRAINING
+        // ==========================================
+
+        await loadTraining(user.id);
+
+
+        // ==========================================
+        // TRAINING FORM
+        // ==========================================
+
+        const trainingForm =
+            document.getElementById(
+                "trainingForm"
+            );
+
+
+        trainingForm?.addEventListener(
+            "submit",
+            async (e) => {
+
+                e.preventDefault();
+
+                await saveTraining(user.id);
+
+            }
+        );
+
+
+        // ==========================================
+        // PROFILE BUTTON
+        // ==========================================
+
+        profileBtn?.addEventListener(
+            "click",
+            function (event) {
+
+                event.stopPropagation();
+
+                profileDropdown?.classList.toggle(
+                    "show"
+                );
+
+            }
+        );
+
+
+        // ==========================================
+        // CLOSE DROPDOWN
+        // ==========================================
+
+        document.addEventListener(
+            "click",
+            function () {
+
+                profileDropdown?.classList.remove(
+                    "show"
+                );
+
+            }
+        );
+
+
+        // ==========================================
+        // DROPDOWN LOGOUT
+        // ==========================================
+
+        dropdownLogoutBtn?.addEventListener(
+            "click",
+            async function () {
+
+                await supabaseClient.auth.signOut();
+
+                window.location.href =
+                    "index.html";
+
+            }
+        );
 
     }
-
-
-    await loadTraining(user.id);
-
-
-    // Submit
-    document
-        .getElementById("trainingForm")
-        .addEventListener("submit", async (e) => {
-
-            e.preventDefault();
-
-            await saveTraining(user.id);
-
-        });
-
-
-    // Logout
-    document
-        .getElementById("logoutBtn")
-        .addEventListener("click", async () => {
-
-            await supabaseClient.auth.signOut();
-
-            window.location.href = "index.html";
-
-        });
-
-});
+);
 
 
 // ==========================================
@@ -69,7 +209,25 @@ async function loadTraining(userId) {
         document.getElementById("pkiModules");
 
 
-    // Clear containers
+    // ==========================================
+    // CHECK CONTAINER
+    // ==========================================
+
+    if (!pkaContainer || !pkiContainer) {
+
+        console.error(
+            "PKA atau PKI container tidak dijumpai."
+        );
+
+        return;
+
+    }
+
+
+    // ==========================================
+    // CLEAR CONTAINERS
+    // ==========================================
+
     pkaContainer.innerHTML = "";
     pkiContainer.innerHTML = "";
 
@@ -89,9 +247,14 @@ async function loadTraining(userId) {
 
     if (moduleError) {
 
-        console.error(moduleError);
+        console.error(
+            "Module error:",
+            moduleError
+        );
 
-        document.getElementById("message").innerText =
+        document.getElementById(
+            "message"
+        ).innerText =
             "Failed to load training modules.";
 
         return;
@@ -114,9 +277,14 @@ async function loadTraining(userId) {
 
     if (courseError) {
 
-        console.error(courseError);
+        console.error(
+            "Course error:",
+            courseError
+        );
 
-        document.getElementById("message").innerText =
+        document.getElementById(
+            "message"
+        ).innerText =
             "Failed to load training courses.";
 
         return;
@@ -139,9 +307,14 @@ async function loadTraining(userId) {
 
     if (trainingError) {
 
-        console.error(trainingError);
+        console.error(
+            "Training error:",
+            trainingError
+        );
 
-        document.getElementById("message").innerText =
+        document.getElementById(
+            "message"
+        ).innerText =
             "Failed to load your training records.";
 
         return;
@@ -154,36 +327,43 @@ async function loadTraining(userId) {
     // ==========================================
 
     const pkaCourse =
-        courses.find(course =>
-            course.course_code === "PKA"
+        courses.find(
+            course =>
+                course.course_code === "PKA"
         );
 
 
     if (pkaCourse) {
 
         const pkaModules =
-            modules.filter(module =>
-                module.course_id === pkaCourse.id
+            modules.filter(
+                module =>
+                    module.course_id ===
+                    pkaCourse.id
             );
 
 
-        pkaModules.forEach(module => {
+        pkaModules.forEach(
+            module => {
 
-            const record =
-                userTraining.find(item =>
-                    item.module_id === module.id
+                const record =
+                    userTraining.find(
+                        item =>
+                            item.module_id ===
+                            module.id
+                    );
+
+
+                pkaContainer.appendChild(
+                    createTrainingItem(
+                        pkaCourse,
+                        module,
+                        record
+                    )
                 );
 
-
-            pkaContainer.appendChild(
-                createTrainingItem(
-                    pkaCourse,
-                    module,
-                    record
-                )
-            );
-
-        });
+            }
+        );
 
     }
 
@@ -193,42 +373,47 @@ async function loadTraining(userId) {
     // ==========================================
 
     const pkiCourse =
-        courses.find(course =>
-            course.course_code === "PKI"
+        courses.find(
+            course =>
+                course.course_code === "PKI"
         );
 
 
     if (pkiCourse) {
 
         const pkiModules =
-            modules.filter(module =>
-                module.course_id === pkiCourse.id
+            modules.filter(
+                module =>
+                    module.course_id ===
+                    pkiCourse.id
             );
 
 
-        pkiModules.forEach(module => {
+        pkiModules.forEach(
+            module => {
 
-            const record =
-                userTraining.find(item =>
-                    item.module_id === module.id
+                const record =
+                    userTraining.find(
+                        item =>
+                            item.module_id ===
+                            module.id
+                    );
+
+
+                pkiContainer.appendChild(
+                    createTrainingItem(
+                        pkiCourse,
+                        module,
+                        record
+                    )
                 );
 
-
-            pkiContainer.appendChild(
-                createTrainingItem(
-                    pkiCourse,
-                    module,
-                    record
-                )
-            );
-
-        });
+            }
+        );
 
     }
 
 }
-
-
 // ==========================================
 // CREATE TRAINING ITEM
 // ==========================================

@@ -1,0 +1,547 @@
+/* ==========================================
+   ADMIN DASHBOARD
+   Leadership Readiness System
+========================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;500;600;700&display=swap");
+
+
+/* ==========================================
+   RESET
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #f5f7fb;
+    color: #1f2937;
+}
+
+
+/* ==========================================
+   MAIN CONTAINER
+========================================== */
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* ==========================================
+   SIDEBAR
+========================================== */
+
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background: #163b65;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    padding: 28px 18px;
+}
+
+
+/* SIDEBAR HEADER */
+
+.sidebar-header {
+    padding: 0 14px 35px;
+}
+
+.sidebar-header h2 {
+    font-size: 23px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.sidebar-header span {
+    display: block;
+    font-size: 11px;
+    color: #cbd8e8;
+    margin-top: 3px;
+}
+
+
+/* SIDEBAR MENU */
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.sidebar-menu a {
+    text-decoration: none;
+    color: #dce6f2;
+
+    padding: 13px 15px;
+    border-radius: 9px;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    transition: 0.2s ease;
+}
+
+.sidebar-menu a:hover {
+    background: rgba(255, 255, 255, 0.10);
+    color: white;
+}
+
+.sidebar-menu a.active {
+    background: white;
+    color: #163b65;
+    font-weight: 600;
+}
+
+
+/* SIDEBAR BOTTOM */
+
+.sidebar-bottom {
+    margin-top: auto;
+    padding: 15px 0 0;
+}
+
+.sidebar-bottom button {
+    width: 100%;
+
+    border: 1px solid rgba(255,255,255,0.25);
+    background: transparent;
+    color: white;
+
+    padding: 11px;
+    border-radius: 8px;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.sidebar-bottom button:hover {
+    background: rgba(255,255,255,0.10);
+}
+
+
+/* ==========================================
+   MAIN CONTENT
+========================================== */
+
+.main-content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+
+    padding: 30px 35px 50px;
+}
+
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+    font-size: 25px;
+    font-weight: 600;
+    color: #163b65;
+}
+
+.dashboard-header p {
+    font-size: 13px;
+    color: #7b8491;
+    margin-top: 3px;
+}
+
+.admin-profile {
+    background: white;
+    padding: 10px 18px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+
+    font-size: 13px;
+    font-weight: 600;
+    color: #163b65;
+}
+
+
+/* ==========================================
+   WELCOME
+========================================== */
+
+.welcome-section {
+    margin-bottom: 25px;
+}
+
+.welcome-section h2 {
+    font-size: 21px;
+    font-weight: 600;
+    color: #26384d;
+}
+
+.welcome-section p {
+    font-size: 13px;
+    color: #7b8491;
+    margin-top: 4px;
+}
+
+
+/* ==========================================
+   SUMMARY CARDS
+========================================== */
+
+.summary-cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+    gap: 16px;
+
+    margin-bottom: 25px;
+}
+
+
+.dashboard-card {
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 3px 14px rgba(22, 59, 101, 0.06);
+
+    border: 1px solid #edf0f5;
+}
+
+
+.summary-cards .dashboard-card {
+    min-height: 125px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.summary-cards h3 {
+    font-size: 12px;
+    font-weight: 500;
+    color: #7b8491;
+
+    margin-bottom: 10px;
+}
+
+
+.summary-cards strong {
+    font-size: 28px;
+    font-weight: 600;
+    color: #163b65;
+}
+
+
+.summary-cards span {
+    font-size: 11px;
+    color: #9aa2ad;
+    margin-top: 2px;
+}
+
+
+/* ==========================================
+   STAFF SECTION
+========================================== */
+
+.staff-section {
+    padding: 0;
+    overflow: hidden;
+}
+
+
+/* ==========================================
+   CARD HEADER
+========================================== */
+
+.card-header {
+    padding: 22px 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #edf0f5;
+}
+
+
+.card-header h2 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #26384d;
+}
+
+
+.card-header p {
+    font-size: 12px;
+    color: #8b949f;
+    margin-top: 3px;
+}
+
+
+/* ==========================================
+   SEARCH
+========================================== */
+
+.search-box input {
+    width: 230px;
+
+    padding: 10px 14px;
+
+    border: 1px solid #dfe4ea;
+    border-radius: 8px;
+
+    outline: none;
+
+    font-family: inherit;
+    font-size: 12px;
+
+    background: #fafbfc;
+
+    transition: 0.2s ease;
+}
+
+
+.search-box input:focus {
+    border-color: #163b65;
+    background: white;
+
+    box-shadow:
+        0 0 0 3px rgba(22,59,101,0.08);
+}
+
+
+.search-box input::placeholder {
+    color: #a1a8b1;
+}
+
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+
+    min-width: 900px;
+}
+
+
+thead {
+    background: #f8fafc;
+}
+
+
+th {
+    text-align: left;
+
+    padding: 14px 18px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    color: #64748b;
+
+    border-bottom: 1px solid #e8edf2;
+
+    white-space: nowrap;
+}
+
+
+td {
+    padding: 15px 18px;
+
+    font-size: 12px;
+    color: #4b5563;
+
+    border-bottom: 1px solid #eef1f4;
+
+    white-space: nowrap;
+}
+
+
+tbody tr {
+    transition: 0.15s ease;
+}
+
+
+tbody tr:hover {
+    background: #f8fafc;
+}
+
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* ==========================================
+   STAFF ID
+========================================== */
+
+td:first-child {
+    font-weight: 600;
+    color: #163b65;
+}
+
+
+/* ==========================================
+   VIEW BUTTON
+========================================== */
+
+.view-staff-btn {
+    border: none;
+
+    background: #163b65;
+    color: white;
+
+    padding: 7px 15px;
+
+    border-radius: 7px;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.view-staff-btn:hover {
+    background: #0f2d4d;
+
+    transform: translateY(-1px);
+}
+
+
+/* ==========================================
+   EMPTY / LOADING TABLE
+========================================== */
+
+tbody td[colspan] {
+    text-align: center;
+
+    padding: 35px;
+
+    color: #9aa2ad;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1200px) {
+
+    .summary-cards {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        width: 210px;
+    }
+
+    .main-content {
+        margin-left: 210px;
+        width: calc(100% - 210px);
+
+        padding: 25px;
+    }
+
+    .summary-cards {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .sidebar {
+        position: relative;
+
+        width: 100%;
+        min-height: auto;
+    }
+
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .summary-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .search-box input {
+        width: 100%;
+    }
+
+}

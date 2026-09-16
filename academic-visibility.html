@@ -10,6 +10,9 @@
 
     <link rel="stylesheet" href="academic-visibility.css">
 
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'rel='stylesheet'>
+
+
 </head>
 
 <body>
@@ -25,9 +28,55 @@
             <p>Kemaskini Akademik, Penyelidikan, ICAN, dan Hal Ehwal Pelajar</p>
         </div>
 
-        <button id="logoutBtn">
-            Log Keluar
-        </button>
+                <div class="profile-menu">
+
+                    <button class="profile-btn" id="profileBtn">
+                        <i class='bx bx-user'></i>
+                    </button>
+
+                    <div class="profile-dropdown" id="profileDropdown">
+
+                        <div class="dropdown-user">
+                            <strong id="dropdownName">-</strong>
+                            <span id="dropdownStaffId">-</span>
+                        </div>
+
+                        <div class="dropdown-divider"></div>
+
+                        <a href="profile.html">
+                            <i class='bx bx-user'></i>
+                            Maklumat Peribadi
+                        </a>
+
+                        <a href="employment.html">
+                            <i class='bx bx-user'></i>
+                            Maklumat Pekerjaan
+                        </a>
+
+                        <a href="training.html">
+                            <i class='bx bx-user'></i>
+                            Maklumat Latihan
+                        </a>
+
+                        <a href="academic-leadership.html">
+                            <i class='bx bx-user'></i>
+                            Maklumat Sejarah Jawatan Pentadbir akademik
+                        </a>
+
+                        <a href="dashboard.html">
+                            <i class='bx bx-home'></i>
+                            Dashboard / Home
+                        </a>
+
+                        <button id="dropdownLogoutBtn">
+                            <i class='bx bx-log-out'></i>
+                            Log Keluar
+                        </button>
+
+                    </div>
+
+                </div>
+
 
     </div>
 
