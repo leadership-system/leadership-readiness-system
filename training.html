@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 
 <head>
     <meta charset="UTF-8">
@@ -7,67 +7,225 @@
 
     <title>Training Information</title>
 
+    <!-- TRAINING CSS -->
     <link rel="stylesheet" href="training.css">
 
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'rel='stylesheet'>
-
+    <!-- BOXICONS -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
 </head>
 
 <body>
 
-<div class="container">
+    <!-- ==========================================
+         SIDEBAR
+    =========================================== -->
 
-    <!-- HEADER -->
-    <div class="header">
-        <div>
-            <h1>Maklumat Latihan</h1>
-            <p>Kemaskini rekod Pembangunan dan Latihan anda</p>
+    <aside class="sidebar">
+
+        <!-- SIDEBAR HEADER -->
+        <div class="sidebar-header">
+
+            <div class="logo">
+                <i class='bx bx-line-chart'></i>
+            </div>
+
+            <div class="logo-text">
+                <h2>ITDP</h2>
+                <span>Dashboard</span>
+            </div>
+
         </div>
 
+
+        <!-- SIDEBAR MENU -->
+        <nav class="sidebar-menu">
+
+            <p class="menu-title">MENU</p>
+
+
+            <!-- DASHBOARD -->
+            <a href="dashboard.html" class="menu-item">
+
+                <i class='bx bx-home'></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <!-- PROFILE -->
+            <a href="profile.html" class="menu-item">
+
+                <i class='bx bx-user'></i>
+
+                <span>Maklumat Peribadi</span>
+
+            </a>
+
+
+            <!-- EMPLOYMENT -->
+            <a href="employment.html" class="menu-item">
+
+                <i class='bx bx-briefcase'></i>
+
+                <span>Perjawatan</span>
+
+            </a>
+
+
+            <!-- TRAINING -->
+            <a href="training.html" class="menu-item active">
+
+                <i class='bx bx-book-open'></i>
+
+                <span>Latihan</span>
+
+            </a>
+
+
+            <!-- ACADEMIC LEADERSHIP -->
+            <a href="academic-leadership.html" class="menu-item">
+
+                <i class='bx bx-award'></i>
+
+                <span>Sejarah Jawatan</span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+        <div class="sidebar-bottom">
+
+            <button id="logoutBtn" class="logout-btn">
+
+                <i class='bx bx-log-out'></i>
+
+                <span>Log Keluar</span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ==========================================
+         MAIN CONTENT
+    =========================================== -->
+
+    <main class="main-content">
+
+        <div class="container">
+
+
+            <!-- ======================================
+                 HEADER
+            ======================================= -->
+
+            <div class="header">
+
+                <div>
+
+                    <h1>Maklumat Latihan</h1>
+
+                    <p>
+                        Kemaskini rekod Pembangunan dan Latihan anda
+                    </p>
+
+                </div>
+
+
+                <!-- PROFILE MENU -->
                 <div class="profile-menu">
 
-                    <button class="profile-btn" id="profileBtn">
+                    <button
+                        class="profile-btn"
+                        id="profileBtn"
+                        type="button"
+                    >
+
                         <i class='bx bx-user'></i>
+
                     </button>
 
-                    <div class="profile-dropdown" id="profileDropdown">
 
+                    <!-- PROFILE DROPDOWN -->
+                    <div
+                        class="profile-dropdown"
+                        id="profileDropdown"
+                    >
+
+                        <!-- USER INFORMATION -->
                         <div class="dropdown-user">
-                            <strong id="dropdownName">-</strong>
-                            <span id="dropdownStaffId">-</span>
+
+                            <strong id="dropdownName">
+                                -
+                            </strong>
+
+                            <span id="dropdownStaffId">
+                                -
+                            </span>
+
                         </div>
+
 
                         <div class="dropdown-divider"></div>
 
+
+                        <!-- PROFILE -->
                         <a href="profile.html">
+
                             <i class='bx bx-user'></i>
+
                             Maklumat Peribadi
+
                         </a>
 
+
+                        <!-- EMPLOYMENT -->
                         <a href="employment.html">
-                            <i class='bx bx-user'></i>
+
+                            <i class='bx bx-briefcase'></i>
+
                             Maklumat Pekerjaan
+
                         </a>
 
+
+                        <!-- ACADEMIC LEADERSHIP -->
                         <a href="academic-leadership.html">
-                            <i class='bx bx-user'></i>
-                            Maklumat Sejarah Jawatan Pentadbir akademik
+
+                            <i class='bx bx-award'></i>
+
+                            Maklumat Sejarah Jawatan Pentadbir Akademik
+
                         </a>
 
-                        <a href="academic-visibility.html">
-                            <i class='bx bx-user'></i>
-                            Maklumat Ketampakan Pensyarah
-                        </a>
 
+                        <!-- DASHBOARD -->
                         <a href="dashboard.html">
+
                             <i class='bx bx-home'></i>
+
                             Dashboard / Home
+
                         </a>
 
-                        <button id="dropdownLogoutBtn">
+
+                        <!-- LOGOUT -->
+                        <button
+                            id="dropdownLogoutBtn"
+                            type="button"
+                        >
+
                             <i class='bx bx-log-out'></i>
+
                             Log Keluar
+
                         </button>
 
                     </div>
@@ -77,72 +235,139 @@
             </div>
 
 
-    <form id="trainingForm">
+
+            <!-- ======================================
+                 TRAINING FORM
+            ======================================= -->
+
+            <form id="trainingForm">
 
 
-        <!-- ===================================== -->
-        <!-- PKA -->
-        <!-- ===================================== -->
+                <!-- ==================================
+                     PKA
+                =================================== -->
 
-        <div class="section-card">
+                <div class="section-card">
 
-            <div class="section-title">
-                <h2>PKA – Pusat Kepimpinan Akademik</h2>
-                <p>Sila nyatakan kehadiran anda bagi setiap modul.</p>
-            </div>
+                    <div class="section-title">
 
-            <div id="pkaModules"></div>
+                        <h2>
+                            PKA – Pusat Kepimpinan Akademik
+                        </h2>
+
+                        <p>
+                            Sila nyatakan kehadiran anda bagi setiap modul.
+                        </p>
+
+                    </div>
+
+
+                    <!-- PKA MODULES WILL LOAD HERE -->
+                    <div id="pkaModules"></div>
+
+                </div>
+
+
+
+                <!-- ==================================
+                     PKI
+                =================================== -->
+
+                <div class="section-card">
+
+                    <div class="section-title">
+
+                        <h2>
+                            PKI – Pusat Kepimpinan Institusi
+                        </h2>
+
+                        <p>
+                            Sila nyatakan kehadiran anda bagi setiap modul.
+                        </p>
+
+                    </div>
+
+
+                    <!-- PKI MODULES WILL LOAD HERE -->
+                    <div id="pkiModules"></div>
+
+                </div>
+
+
+
+                <!-- ==================================
+                     SAVE BUTTON
+                =================================== -->
+
+                <button
+                    type="submit"
+                    class="save-btn"
+                >
+
+                    Simpan / Kemaskini
+
+                </button>
+
+
+                <!-- MESSAGE -->
+                <p id="message"></p>
+
+
+
+                <!-- ==================================
+                     NAVIGATION BUTTONS
+                =================================== -->
+
+                <div class="navigation-buttons">
+
+
+                    <!-- BACK -->
+                    <a
+                        href="employment.html"
+                        class="back-btn"
+                    >
+
+                        Kembali
+
+                    </a>
+
+
+                    <!-- NEXT -->
+                    <a
+                        href="academic-leadership.html"
+                        class="next-btn"
+                    >
+
+                        Seterusnya
+
+                    </a>
+
+                </div>
+
+
+            </form>
 
         </div>
 
-
-        <!-- ===================================== -->
-        <!-- PKI -->
-        <!-- ===================================== -->
-
-        <div class="section-card">
-
-            <div class="section-title">
-                <h2>PKI – Pusat Kepimpinan Institusi</h2>
-                <p>Sila nyatakan kehadiran anda bagi setiap modul.</p>
-            </div>
-
-            <div id="pkiModules"></div>
-
-        </div>
+    </main>
 
 
-        <!-- SAVE -->
-        <button type="submit" class="save-btn">
-            Simpan / Kemaskini
-        </button>
 
-        <p id="message"></p>
+    <!-- ==========================================
+         SUPABASE
+    =========================================== -->
 
-
-        <!-- NAVIGATION -->
-        <div class="navigation-buttons">
-
-            <a href="employment.html" class="back-btn">
-                Kembali
-            </a>
-
-            <a href="academic-leadership.html" class="next-btn">
-                Seterusnya
-            </a>
-
-        </div>
-
-    </form>
-
-</div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
-<!-- SUPABASE -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- SUPABASE CONFIG -->
+    <script src="supabase.js"></script>
 
-<script src="supabase.js"></script>
-<script src="training.js"></script>
+
+    <!-- TRAINING JAVASCRIPT -->
+    <script src="training.js"></script>
+
 
 </body>
+
 </html>

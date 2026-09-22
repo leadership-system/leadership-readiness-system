@@ -30,8 +30,6 @@ const salaryGrade = document.getElementById("salaryGrade");
 const leadershipCount = document.getElementById("leadershipCount");
 const leadershipScore = document.getElementById("leadershipScore");
 
-const visibilityStatus = document.getElementById("visibilityStatus");
-
 const logoutBtn = document.getElementById("logoutBtn");
 
 const message = document.getElementById("message");
@@ -135,7 +133,6 @@ const [
     employmentResult,
     trainingResult,
     leadershipResult,
-    visibilityResult
 ] = await Promise.all([
 
     loadProfile(userId),
@@ -145,8 +142,6 @@ const [
     loadTraining(userId),
 
     loadAcademicLeadership(userId),
-
-    loadAcademicVisibility(userId)
 
 ]);
 
@@ -166,18 +161,6 @@ createReadinessChart({
 
     leadershipScore:
         leadershipResult?.highestScore || 0,
-
-    academic:
-        visibilityResult?.academicPercent || 0,
-
-    research:
-        visibilityResult?.researchPercent || 0,
-
-    ican:
-        visibilityResult?.icanPercent || 0,
-
-    hep:
-        visibilityResult?.hepPercent || 0
 
 });
 
@@ -955,167 +938,6 @@ function getPositionScore(position) {
 
 }
 
-
-// ==========================================
-// ACADEMIC VISIBILITY
-// ==========================================
-
-async function loadAcademicVisibility(userId) {
-
-    console.log(
-        "Loading ACADEMIC VISIBILITY..."
-    );
-
-
-    const {
-        data,
-        error
-    } = await supabaseClient
-
-        .from("academic_visibility")
-
-        .select("*")
-
-        .eq("user_id", userId);
-
-
-    console.log(
-        "ACADEMIC VISIBILITY DATA:",
-        data
-    );
-
-    console.log(
-        "ACADEMIC VISIBILITY ERROR:",
-        error
-    );
-
-
-    if (error) {
-
-        console.error(
-            "Academic visibility error:",
-            error
-        );
-
-        return;
-
-    }
-
-
-    const records = data || [];
-
-
-    if (records.length === 0) {
-
-        setText(
-            visibilityStatus,
-            "Belum diisi"
-        );
-
-        return {
-            academicPercent: 0,
-            researchPercent: 0,
-            icanPercent: 0,
-            hepPercent: 0
-        };
-
-
-    }
-
-
-    setText(
-        visibilityStatus,
-        `${records.length} rekod`
-    );
-
-    // ==========================================
-// COUNT BY CATEGORY
-// ==========================================
-
-const academicCount =
-    records.filter(record =>
-        record.category === "Akademik"
-    ).length;
-
-
-const researchCount =
-    records.filter(record =>
-        record.category === "Penyelidikan"
-    ).length;
-
-
-const icanCount =
-    records.filter(record =>
-        record.category === "ICAN"
-    ).length;
-
-
-const hepCount =
-    records.filter(record =>
-        record.category === "Hal Ehwal Pelajar"
-    ).length;
-
-
-// ==========================================
-// NORMALISE TO 100%
-// ==========================================
-
-const academicPercent =
-    Math.round(
-        Math.min(academicCount, 12) / 12 * 100
-    );
-
-
-const researchPercent =
-    Math.round(
-        Math.min(researchCount, 8) / 8 * 100
-    );
-
-
-const icanPercent =
-    Math.round(
-        Math.min(icanCount, 3) / 3 * 100
-    );
-
-
-const hepPercent =
-    Math.round(
-        Math.min(hepCount, 2) / 2 * 100
-    );
-
-
-console.log(
-    "Visibility:",
-    {
-        academicCount,
-        researchCount,
-        icanCount,
-        hepCount
-    }
-);
-
-
-console.log(
-    "Visibility percentage:",
-    {
-        academicPercent,
-        researchPercent,
-        icanPercent,
-        hepPercent
-    }
-);
-
-
-return {
-    academicPercent,
-    researchPercent,
-    icanPercent,
-    hepPercent
-};
-
-}
-
-
 // ==========================================
 // HELPER
 // ==========================================
@@ -1400,13 +1222,9 @@ function createReadinessChart(data) {
 
                     "Sejarah Jawatan",
 
-                    "Ketampakan Akademik",
+                    "Gred Gaji",
 
-                    "Ketampakan Penyelidikan",
-
-                    "Ketampakan ICAN",
-
-                    "Ketampakan HEP"
+                    "Markah LNPT"
 
                 ],
 
@@ -1423,15 +1241,7 @@ function createReadinessChart(data) {
 
                             data.pki,
 
-                            data.leadership,
-
-                            data.academic,
-
-                            data.research,
-
-                            data.ican,
-
-                            data.hep
+                            data.leadership
 
                         ],
 
@@ -1499,4 +1309,21 @@ function createReadinessChart(data) {
 
         });
 
+
+const logoutBtn = document.getElementById("logoutBtn");
+
+if (logoutBtn) {
+    logoutBtn.addEventListener("click", async () => {
+
+        const { error } = await supabaseClient.auth.signOut();
+
+        if (error) {
+            console.error(error);
+            alert("Gagal log keluar.");
+            return;
+        }
+
+        window.location.href = "index.html";
+    });
+}
 }

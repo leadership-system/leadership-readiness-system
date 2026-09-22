@@ -22,6 +22,8 @@ const dropdownStaffId =
 const dropdownLogoutBtn =
     document.getElementById("dropdownLogoutBtn");
 
+const logoutBtn =
+    document.getElementById("logoutBtn");
 
 // ==========================================
 // HELPER
@@ -946,4 +948,20 @@ async function saveLeadershipHistory(userId) {
 
     }
 
+    const logoutBtn = document.getElementById("logoutBtn");
+
+if (logoutBtn) {
+    logoutBtn.addEventListener("click", async () => {
+
+        const { error } = await supabaseClient.auth.signOut();
+
+        if (error) {
+            console.error(error);
+            alert("Gagal log keluar.");
+            return;
+        }
+
+        window.location.href = "index.html";
+    });
+}
 }

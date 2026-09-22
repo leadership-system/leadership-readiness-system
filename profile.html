@@ -13,6 +13,75 @@
 
 <body>
 
+   <!-- ==============================
+         SIDEBAR
+    =============================== -->
+
+    <aside class="sidebar">
+        
+
+        <div class="sidebar-header">
+
+            <div class="logo">
+                <i class='bx bx-line-chart'></i>
+            </div>
+
+            <div class="logo-text">
+                <h2>ITDP</h2>
+                <span>Dashboard</span>
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="sidebar-menu">
+
+            <p class="menu-title">MENU</p>
+
+            <a href="dashboard.html" class="menu-item">
+                <i class='bx bx-home'></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="profile.html" class="menu-item active">
+                <i class='bx bx-user'></i>
+                <span>Maklumat Peribadi</span>
+            </a>
+
+            <a href="employment.html" class="menu-item">
+                <i class='bx bx-briefcase'></i>
+                <span>Perjawatan</span>
+            </a>
+
+            <a href="training.html" class="menu-item">
+                <i class='bx bx-book-open'></i>
+                <span>Latihan</span>
+            </a>
+
+            <a href="academic-leadership.html" class="menu-item">
+                <i class='bx bx-award'></i>
+                <span>Sejarah Jawatan</span>
+            </a>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+            <button id="logoutBtn" class="logout-btn">
+                <i class='bx bx-log-out'></i>
+                <span>Log Keluar</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+<main class="main-content">
     <div class="container">
 
         <!-- HEADER -->
@@ -40,23 +109,18 @@
                         <div class="dropdown-divider"></div>
 
                         <a href="employment.html">
-                            <i class='bx bx-user'></i>
+                            <i class='bx bx-briefcase'></i>
                             Maklumat Pekerjaan
                         </a>
 
                         <a href="training.html">
-                            <i class='bx bx-user'></i>
+                            <i class='bx bx-book-open'></i>
                             Maklumat Latihan
                         </a>
 
                         <a href="academic-leadership.html">
-                            <i class='bx bx-user'></i>
+                            <i class='bx bx-award'></i>
                             Maklumat Sejarah Jawatan Pentadbir akademik
-                        </a>
-
-                        <a href="academic-visibility.html">
-                            <i class='bx bx-user'></i>
-                            Maklumat Ketampakan Pensyarah
                         </a>
 
                         <a href="dashboard.html">
@@ -252,7 +316,7 @@
         </div>
 
     </div>
-
+</main>
 
     <!-- SUPABASE -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

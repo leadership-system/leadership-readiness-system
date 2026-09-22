@@ -16,165 +16,222 @@
 
 <body>
 
-<div class="container">
+    <aside class="sidebar">
 
-    <!-- HEADER -->
-    <div class="header">
+        <div class="sidebar-header">
 
-        <div>
-            <h1>Sejarah Jawatan Pentadbir akademik</h1>
-            <p>Kemaskini sejarah jawatan pentadbiran akademik anda</p>
-        </div>
-
-                <div class="profile-menu">
-
-                    <button class="profile-btn" id="profileBtn">
-                        <i class='bx bx-user'></i>
-                    </button>
-
-                    <div class="profile-dropdown" id="profileDropdown">
-
-                        <div class="dropdown-user">
-                            <strong id="dropdownName">-</strong>
-                            <span id="dropdownStaffId">-</span>
-                        </div>
-
-                        <div class="dropdown-divider"></div>
-
-                        <a href="profile.html">
-                            <i class='bx bx-user'></i>
-                            Maklumat Peribadi
-                        </a>                        
-
-                        <a href="employment.html">
-                            <i class='bx bx-user'></i>
-                            Maklumat Pekerjaan
-                        </a>
-
-                        <a href="training.html">
-                            <i class='bx bx-user'></i>
-                            Maklumat Latihan
-                        </a>
-
-                        <a href="academic-visibility.html">
-                            <i class='bx bx-user'></i>
-                            Maklumat Ketampakan Pensyarah
-                        </a>
-
-                        <a href="dashboard.html">
-                            <i class='bx bx-home'></i>
-                            Dashboard / Home
-                        </a>
-
-                        <button id="dropdownLogoutBtn">
-                            <i class='bx bx-log-out'></i>
-                            Log Keluar
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-    </div>
-
-
-
-    <!-- HISTORY -->
-
-    <div class="profile-card">
-
-        <div class="section-header">
-
-            <div>
-                <h2>Senarai Jawatan</h2>
-
-                <p>
-                    Masukkan jawatan dan tempoh perkhidmatan anda.
-                </p>
+            <div class="logo">
+                <i class='bx bx-line-chart'></i>
             </div>
 
+            <div class="logo-text">
+                <h2>ITDP</h2>
+                <span>Dashboard</span>
+            </div>
 
-            <button
-                type="button"
-                id="addPositionBtn"
-                class="add-btn">
+        </div>
 
-                + Tambah Baharu
 
+        <!-- NAVIGATION -->
+
+        <nav class="sidebar-menu">
+
+            <p class="menu-title">MENU</p>
+
+            <a href="dashboard.html" class="menu-item">
+                <i class='bx bx-home'></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="profile.html" class="menu-item">
+                <i class='bx bx-user'></i>
+                <span>Maklumat Peribadi</span>
+            </a>
+
+            <a href="employment.html" class="menu-item">
+                <i class='bx bx-briefcase'></i>
+                <span>Perjawatan</span>
+            </a>
+
+            <a href="training.html" class="menu-item">
+                <i class='bx bx-book-open'></i>
+                <span>Latihan</span>
+            </a>
+
+            <a href="academic-leadership.html" class="menu-item active">
+                <i class='bx bx-award'></i>
+                <span>Sejarah Jawatan</span>
+            </a>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+            <button id="logoutBtn" class="logout-btn">
+                <i class='bx bx-log-out'></i>
+                <span>Log Keluar</span>
             </button>
 
         </div>
 
-
-        <div class="table-wrapper">
-
-            <table>
-
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            Jawatan
-                        </th>
-
-                        <th>
-                            Tarikh Mula
-                        </th>
-
-                        <th>
-                            Tarikh Tamat
-                        </th>
-
-                        <th>
-                            Tempoh
-                        </th>
-
-                        <th>
-                            Tindakan
-                        </th>
-
-                    </tr>
-
-                </thead>
+    </aside>
+<main class="main-content">
 
 
-                <tbody id="leadershipTableBody">
+    <div class="container">
 
-                </tbody>
+        <!-- HEADER -->
+        <div class="header">
 
-            </table>
+            <div>
+                <h1>Sejarah Jawatan Pentadbir akademik</h1>
+                <p>Kemaskini sejarah jawatan pentadbiran akademik anda</p>
+            </div>
+
+                    <div class="profile-menu">
+
+                        <button class="profile-btn" id="profileBtn">
+                            <i class='bx bx-user'></i>
+                        </button>
+
+                        <div class="profile-dropdown" id="profileDropdown">
+
+                            <div class="dropdown-user">
+                                <strong id="dropdownName">-</strong>
+                                <span id="dropdownStaffId">-</span>
+                            </div>
+
+                            <div class="dropdown-divider"></div>
+
+                            <a href="profile.html">
+                                <i class='bx bx-user'></i>
+                                Maklumat Peribadi
+                            </a>                        
+
+                            <a href="employment.html">
+                                <i class='bx bx-briefcase'></i>
+                                Maklumat Pekerjaan
+                            </a>
+
+                            <a href="training.html">
+                                <i class='bx bx-book-open'></i>
+                                Maklumat Latihan
+                            </a>
+
+                            <a href="dashboard.html">
+                                <i class='bx bx-home'></i>
+                                Dashboard / Home
+                            </a>
+
+                            <button id="dropdownLogoutBtn">
+                                <i class='bx bx-log-out'></i>
+                                Log Keluar
+                            </button>
+
+                        </div>
+
+                    </div>
+
 
         </div>
 
+
+
+        <!-- HISTORY -->
+
+        <div class="profile-card">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Senarai Jawatan</h2>
+
+                    <p>
+                        Masukkan jawatan dan tempoh perkhidmatan anda.
+                    </p>
+                </div>
+
+
+                <button
+                    type="button"
+                    id="addPositionBtn"
+                    class="add-btn">
+
+                    + Tambah Baharu
+
+                </button>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Jawatan
+                            </th>
+
+                            <th>
+                                Tarikh Mula
+                            </th>
+
+                            <th>
+                                Tarikh Tamat
+                            </th>
+
+                            <th>
+                                Tempoh
+                            </th>
+
+                            <th>
+                                Tindakan
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="leadershipTableBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+            <!-- SAVE -->
+            <button 
+                type="button"
+                id="saveBtn"
+                class="save-btn">
+                Simpan / Kemaskini
+            </button>
+
+            <p id="message"></p>
+
+        <div class="navigation-buttons">
+            
+            <a href="training.html" class="nav-btn back-btn">
+                Kembali
+            </a>
+
+        </div>
+
+
     </div>
-
-
-        <!-- SAVE -->
-        <button 
-            type="button"
-            id="saveBtn"
-            class="save-btn">
-            Simpan / Kemaskini
-        </button>
-
-        <p id="message"></p>
-
-    <div class="navigation-buttons">
-        
-        <a href="training.html" class="nav-btn back-btn">
-            Kembali
-        </a>
-
-        <a href="academic-visibility.html" class="nav-btn next-btn">
-            Seterusnya
-        </a>
-
-    </div>
-
-
-</div>
+</main>
 
 
 <!-- SUPABASE -->

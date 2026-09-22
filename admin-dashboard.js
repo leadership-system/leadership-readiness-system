@@ -26,9 +26,6 @@ const totalPki =
 const totalLeadership =
     document.getElementById("totalLeadership");
 
-const totalVisibility =
-    document.getElementById("totalVisibility");
-
 const staffTableBody =
     document.getElementById("staffTableBody");
 
@@ -438,43 +435,6 @@ async function loadStaff() {
         }
 
 
-        // ==========================================
-        // 7. ACADEMIC VISIBILITY
-        // ==========================================
-
-        const {
-            data: visibilityData,
-            error: visibilityError
-        } =
-            await supabaseClient
-                .from("academic_visibility")
-                .select(`
-                    id,
-                    user_id,
-                    category,
-                    activity_type,
-                    scope,
-                    institution,
-                    thesis_level,
-                    review_type,
-                    role,
-                    year
-                `)
-                .in(
-                    "user_id",
-                    userIds
-                );
-
-
-        if (visibilityError) {
-
-            console.error(
-                "Academic Visibility Error:",
-                visibilityError
-            );
-
-        }
-
 
         // ==========================================
         // 8. COMBINE DATA
@@ -513,16 +473,6 @@ async function loadStaff() {
                                 item.user_id === userId
                         );
 
-
-                // Visibility
-                const visibility =
-                    (visibilityData || [])
-                        .filter(
-                            item =>
-                                item.user_id === userId
-                        );
-
-
                 return {
 
                     ...staff,
@@ -535,9 +485,6 @@ async function loadStaff() {
 
                     leadership:
                         leadership,
-
-                    visibility:
-                        visibility
 
                 };
 
@@ -1015,26 +962,6 @@ function updateSummary() {
 
     }
 
-
-    // ==========================================
-    // VISIBILITY
-    // ==========================================
-
-    const visibilityStaff =
-        allStaff.filter(
-            staff =>
-                staff.visibility &&
-                staff.visibility.length > 0
-        ).length;
-
-
-    if (totalVisibility) {
-
-        totalVisibility.textContent =
-            visibilityStaff;
-
-    }
-
 }
 
 
@@ -1121,22 +1048,6 @@ function renderStaffTable(
 
 
         // ==========================================
-        // VISIBILITY
-        // ==========================================
-
-        const visibilityCount =
-            (
-                staff.visibility || []
-            ).length;
-
-
-        const visibilityText =
-            visibilityCount > 0
-                ? visibilityCount + " rekod"
-                : "-";
-
-
-        // ==========================================
         // TABLE ROW
         // ==========================================
 
@@ -1180,13 +1091,6 @@ function renderStaffTable(
             <td>
                 ${escapeHtml(
                     leadershipText
-                )}
-            </td>
-
-
-            <td>
-                ${escapeHtml(
-                    visibilityText
                 )}
             </td>
 
@@ -1338,10 +1242,6 @@ function viewStaff(userId) {
         staff.leadership || [];
 
 
-    const visibility =
-        staff.visibility || [];
-
-
     const employment =
         staff.employment || {};
 
@@ -1374,9 +1274,6 @@ ${getPKIProgress(staff)}
 
 Sejarah Jawatan:
 ${leadership.length} rekod
-
-Ketampakan:
-${visibility.length} rekod
 
 `;
 

@@ -24,6 +24,9 @@ const dropdownStaffId =
 const dropdownLogoutBtn =
     document.getElementById("dropdownLogoutBtn");
 
+const logoutBtn =
+    document.getElementById("logoutBtn")
+
 
 // ==========================================
 // HELPER
@@ -192,7 +195,39 @@ document.addEventListener(
             }
         );
 
+// ==========================================
+// SIDEBAR LOGOUT
+// ==========================================
+
+logoutBtn?.addEventListener(
+    "click",
+    async function () {
+
+        try {
+
+            const { error } =
+                await supabaseClient.auth.signOut();
+
+            if (error) {
+                throw error;
+            }
+
+            window.location.href = "index.html";
+
+        } catch (error) {
+
+            console.error(
+                "Logout error:",
+                error
+            );
+
+            alert("Gagal log keluar.");
+        }
+
     }
+);
+    }
+
 );
 
 
@@ -1090,5 +1125,7 @@ async function saveTraining(userId) {
             "red";
 
     }
+
+
 
 }

@@ -24,6 +24,9 @@ const dropdownStaffId =
 const dropdownLogoutBtn =
     document.getElementById("dropdownLogoutBtn");
 
+const logoutBtn =
+    document.getElementById("logoutBtn");
+
 
 // ==========================================
 // HELPER
@@ -379,21 +382,37 @@ profileForm.addEventListener(
 
 
 // ==========================================
-// LOGOUT
+// LOGOUT - SIDEBAR
 // ==========================================
 
-dropdownLogoutBtn?.addEventListener(
+logoutBtn?.addEventListener(
     "click",
-    async function() {
+    async function () {
 
-        await supabaseClient.auth.signOut();
+        try {
 
-        window.location.href =
-            "index.html";
+            const { error } =
+                await supabaseClient.auth.signOut();
+
+            if (error) {
+                throw error;
+            }
+
+            window.location.href = "index.html";
+
+        } catch (error) {
+
+            console.error(
+                "Sidebar logout error:",
+                error
+            );
+
+            alert("Gagal log keluar.");
+
+        }
 
     }
 );
-
 
 // ==========================================
 // PROFILE DROPDOWN

@@ -25,6 +25,9 @@ const lnptTableBody =
 
 const EVIDENCE_BUCKET = "evidence";
 
+const logoutBtn =
+    document.getElementById("logoutBtn")
+
 
 // ==========================================
 // PROFILE DROPDOWN
@@ -2213,9 +2216,37 @@ dropdownLogoutBtn?.addEventListener(
     }
 );
 
+// ==========================================
+// SIDEBAR LOGOUT
+// ==========================================
 
-// ==========================================
-// START
-// ==========================================
+logoutBtn?.addEventListener(
+    "click",
+    async function () {
+
+        try {
+
+            const { error } =
+                await supabaseClient.auth.signOut();
+
+            if (error) {
+                throw error;
+            }
+
+            window.location.href = "index.html";
+
+        } catch (error) {
+
+            console.error(
+                "Logout error:",
+                error
+            );
+
+            alert("Gagal log keluar.");
+        }
+
+    }
+);
+
 
 checkUser();
