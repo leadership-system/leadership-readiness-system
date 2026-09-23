@@ -300,9 +300,8 @@ body {
     font-size: 19px;
 }
 
-.logout-btn:hover {
-    background: rgba(220, 38, 38, 0.18);
-    color: #ffffff;
+#logoutBtn:hover {
+    background: #a91f1f;
 }
 
 
@@ -339,23 +338,20 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     margin-bottom: 25px;
+    gap: 20px;
 }
+
 
 .header h1 {
-    color: var(--navy);
-
-    font-size: 27px;
-    font-weight: 600;
+    font-size: 28px;
+    color: #163b65;
 }
 
+
 .header p {
-    color: var(--text-light);
-
+    color: #6b7280;
     font-size: 14px;
-
-    margin-top: 4px;
 }
 
 

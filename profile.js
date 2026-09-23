@@ -439,6 +439,57 @@ document.addEventListener(
     }
 );
 
+// ==========================================
+// DROPDOWN LOGOUT
+// ==========================================
+
+dropdownLogoutBtn?.addEventListener(
+    "click",
+    async function () {
+
+        await supabaseClient.auth.signOut();
+
+        window.location.href =
+            "index.html";
+
+    }
+);
+
+// ==========================================
+// SIDEBAR LOGOUT
+// ==========================================
+
+logoutBtn?.addEventListener(
+    "click",
+    async function () {
+
+        try {
+
+            const { error } =
+                await supabaseClient.auth.signOut();
+
+            if (error) {
+                throw error;
+            }
+
+            window.location.href = "index.html";
+
+        } catch (error) {
+
+            console.error(
+                "Logout error:",
+                error
+            );
+
+            alert("Gagal log keluar.");
+        }
+
+    }
+);
+
+
+checkUser();
+
 
 // ==========================================
 // START
