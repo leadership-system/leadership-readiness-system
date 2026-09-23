@@ -1,384 +1,458 @@
 <!DOCTYPE html>
+
 <html lang="ms">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Dashboard | Individual Talent Development Plan (ITDP)</title>
+```
+<title>Dashboard | Individual Talent Development Plan (ITDP)</title>
 
-    <link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="dashboard.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
 
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+```
+
 </head>
 
 <body>
 
-    <!-- ==============================
-         SIDEBAR
-    =============================== -->
+<!-- ==============================
+     SIDEBAR
+=============================== -->
 
-    <aside class="sidebar">
+<aside class="sidebar">
 
-        <div class="sidebar-header">
+    <div class="sidebar-header">
 
-            <div class="logo">
-                <i class='bx bx-line-chart'></i>
-            </div>
+        <div class="logo">
+            <i class='bx bx-line-chart'></i>
+        </div>
 
-            <div class="logo-text">
-                <h2>ITDP</h2>
-                <span>Dashboard</span>
-            </div>
+        <div class="logo-text">
+            <h2>ITDP</h2>
+            <span>Dashboard</span>
+        </div>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="sidebar-menu">
+
+        <p class="menu-title">MENU</p>
+
+        <a href="dashboard.html" class="menu-item active">
+            <i class='bx bx-home'></i>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="profile.html" class="menu-item">
+            <i class='bx bx-user'></i>
+            <span>Maklumat Peribadi</span>
+        </a>
+
+        <a href="employment.html" class="menu-item">
+            <i class='bx bx-briefcase'></i>
+            <span>Perjawatan</span>
+        </a>
+
+        <a href="training.html" class="menu-item">
+            <i class='bx bx-book-open'></i>
+            <span>Latihan</span>
+        </a>
+
+        <a href="academic-leadership.html" class="menu-item">
+            <i class='bx bx-award'></i>
+            <span>Sejarah Jawatan</span>
+        </a>
+
+    </nav>
+
+
+    <!-- SIDEBAR BOTTOM -->
+
+    <div class="sidebar-bottom">
+
+        <button id="logoutBtn" class="logout-btn">
+            <i class='bx bx-log-out'></i>
+            <span>Log Keluar</span>
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- ==============================
+     MAIN CONTENT
+=============================== -->
+
+<main class="main-content">
+
+
+    <!-- TOP HEADER -->
+
+    <header class="top-header">
+
+        <div>
+
+            <p class="page-label">
+                Individual Talent Development Plan (ITDP)
+            </p>
+
+            <h1>
+                Dashboard
+            </h1>
 
         </div>
 
 
-        <!-- NAVIGATION -->
+        <div class="user-header">
 
-        <nav class="sidebar-menu">
+            <div class="profile-menu">
 
-            <p class="menu-title">MENU</p>
+                <button class="profile-btn" id="profileBtn">
+                    <i class='bx bx-user'></i>
+                </button>
 
-            <a href="dashboard.html" class="menu-item active">
-                <i class='bx bx-home'></i>
-                <span>Dashboard</span>
-            </a>
+                <div class="profile-dropdown" id="profileDropdown">
 
-            <a href="profile.html" class="menu-item">
-                <i class='bx bx-user'></i>
-                <span>Maklumat Peribadi</span>
-            </a>
+                    <div class="dropdown-user">
 
-            <a href="employment.html" class="menu-item">
-                <i class='bx bx-briefcase'></i>
-                <span>Perjawatan</span>
-            </a>
+                        <strong id="dropdownName">
+                            -
+                        </strong>
 
-            <a href="training.html" class="menu-item">
-                <i class='bx bx-book-open'></i>
-                <span>Latihan</span>
-            </a>
+                        <span id="dropdownStaffId">
+                            -
+                        </span>
 
-            <a href="academic-leadership.html" class="menu-item">
-                <i class='bx bx-award'></i>
-                <span>Sejarah Jawatan</span>
-            </a>
+                    </div>
 
-        </nav>
+                    <div class="dropdown-divider"></div>
 
-
-        <!-- SIDEBAR BOTTOM -->
-
-        <div class="sidebar-bottom">
-
-            <button id="logoutBtn" class="logout-btn">
-                <i class='bx bx-log-out'></i>
-                <span>Log Keluar</span>
-            </button>
-
-        </div>
-
-    </aside>
-
-
-    <!-- ==============================
-         MAIN CONTENT
-    =============================== -->
-
-    <main class="main-content">
-
-
-        <!-- TOP HEADER -->
-
-        <header class="top-header">
-
-            <div>
-                <p class="page-label">Individual Talent Development Plan (ITDP)</p>
-
-                <h1>
-                    Dashboard
-                </h1>
-            </div>
-
-
-            <div class="user-header">
-
-                <div class="profile-menu">
-
-                    <button class="profile-btn" id="profileBtn">
+                    <a href="profile.html">
                         <i class='bx bx-user'></i>
+                        Maklumat Peribadi
+                    </a>
+
+                    <a href="employment.html">
+                        <i class='bx bx-briefcase'></i>
+                        Maklumat Pekerjaan
+                    </a>
+
+                    <a href="training.html">
+                        <i class='bx bx-book-open'></i>
+                        Maklumat Latihan
+                    </a>
+
+                    <a href="academic-leadership.html">
+                        <i class='bx bx-award'></i>
+                        Maklumat Sejarah Jawatan Pentadbir akademik
+                    </a>
+
+                    <button id="dropdownLogoutBtn">
+                        <i class='bx bx-log-out'></i>
+                        Log Keluar
                     </button>
 
-                    <div class="profile-dropdown" id="profileDropdown">
+                </div>
 
-                        <div class="dropdown-user">
-                            <strong id="dropdownName">-</strong>
-                            <span id="dropdownStaffId">-</span>
-                        </div>
-
-                        <div class="dropdown-divider"></div>
-
-                        <a href="profile.html">
-                            <i class='bx bx-user'></i>
-                            Maklumat Peribadi
-                        </a>
-
-                        <a href="employment.html">
-                            <i class='bx bx-briefcase'></i>
-                            Maklumat Pekerjaan
-                        </a>
-
-                        <a href="training.html">
-                            <i class='bx bx-book-open'></i>
-                            Maklumat Latihan
-                        </a>
-
-                        <a href="academic-leadership.html">
-                            <i class='bx bx-award'></i>
-                            Maklumat Sejarah Jawatan Pentadbir akademik
-                        </a>
+            </div>
 
 
-                        <button id="dropdownLogoutBtn">
-                            <i class='bx bx-log-out'></i>
-                            Log Keluar
-                        </button>
+            <div class="user-header-info">
+
+                <strong id="headerName">
+                    memuatkan...
+                </strong>
+
+                <span id="headerStaffId">
+                    -
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==============================
+         WELCOME SECTION
+    =============================== -->
+
+    <section class="welcome-card">
+
+        <div class="welcome-content">
+
+            <span class="welcome-label">
+                SELAMAT DATANG
+            </span>
+
+            <h2 id="welcomeName">
+                Sedang memuatkan...
+            </h2>
+
+            <p>
+                Selamat datang ke Individual Talent Development Plan (ITDP).
+                Gunakan dashboard ini untuk melihat ringkasan
+                maklumat dan perkembangan kepimpinan anda.
+            </p>
+
+        </div>
+
+
+        <div class="welcome-icon">
+
+            <i class='bx bx-bar-chart-alt-2'></i>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==============================
+         CONTENT GRID
+    =============================== -->
+
+    <section class="content-grid">
+
+
+        <!-- ==============================
+             PERSONAL INFORMATION
+        =============================== -->
+
+        <div class="dashboard-card profile-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        Maklumat Peribadi
+                    </h3>
+
+                    <p>
+                        Ringkasan profil pengguna
+                    </p>
+
+                </div>
+
+                <a href="profile.html" class="view-link">
+
+                    Kemaskini
+
+                    <i class='bx bx-edit'></i>
+
+                </a>
+
+            </div>
+
+
+            <div class="profile-info">
+
+                <div class="profile-row">
+
+                    <span>
+                        Nama
+                    </span>
+
+                    <strong id="profileName">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="profile-row">
+
+                    <span>
+                        Staff ID
+                    </span>
+
+                    <strong id="profileStaffId">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="profile-row">
+
+                    <span>
+                        Gelaran
+                    </span>
+
+                    <strong id="profileTitle">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="profile-row">
+
+                    <span>
+                        Emel
+                    </span>
+
+                    <strong id="profileEmail">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="profile-row">
+
+                    <span>
+                        No. Telefon
+                    </span>
+
+                    <strong id="profilePhone">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==============================
+             READINESS ANALYSIS
+        =============================== -->
+
+        <section class="readiness-analysis">
+
+            <!-- RADAR CHART -->
+
+            <div class="dashboard-card readiness-chart-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Analisis Kesediaan Kepimpinan
+                        </h3>
+
+                        <p>
+                            Individual Talent Roadmap / CPD
+                        </p>
 
                     </div>
 
                 </div>
 
-                <div class="user-header-info">
 
-                    <strong id="headerName">
-                        memuatkan...
-                    </strong>
+                <div class="radar-chart-container">
 
-                    <span id="headerStaffId">
-                        -
-                    </span>
+                    <canvas id="readinessChart"></canvas>
 
                 </div>
 
             </div>
 
-        </header>
+
+            <!-- READINESS INFORMATION -->
+
+            <div class="dashboard-card readiness-info-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Leadership Readiness
+                        </h3>
+
+                        <p>
+                            Ringkasan pencapaian berdasarkan
+                            maklumat yang telah diisi.
+                        </p>
+
+                    </div>
+
+                </div>
 
 
-        <!-- ==============================
-             WELCOME SECTION
-        =============================== -->
+                <div class="readiness-info">
 
-        <section class="welcome-card">
 
-            <div class="welcome-content">
+                    <!-- PRESTASI -->
 
-                <span class="welcome-label">
-                    SELAMAT DATANG
-                </span>
+                    <div class="readiness-info-item">
 
-                <h2 id="welcomeName">
-                    Sedang memuatkan...
-                </h2>
+                        <span>
+                            Prestasi Perjawatan
+                        </span>
 
-                <p>
-                    Selamat datang ke Individual Talent Development Plan (ITDP).
-                    Gunakan dashboard ini untuk melihat ringkasan
-                    maklumat dan perkembangan kepimpinan anda.
-                </p>
+                        <strong id="readinessPerformance">
+                            0%
+                        </strong>
 
-            </div>
+                    </div>
 
-            <div class="welcome-icon">
 
-                <i class='bx bx-bar-chart-alt-2'></i>
+                    <!-- PKA -->
+
+                    <div class="readiness-info-item">
+
+                        <span>
+                            Modul PKA
+                        </span>
+
+                        <strong id="readinessPka">
+                            0%
+                        </strong>
+
+                    </div>
+
+
+                    <!-- PKI -->
+
+                    <div class="readiness-info-item">
+
+                        <span>
+                            Modul PKI
+                        </span>
+
+                        <strong id="readinessPki">
+                            0%
+                        </strong>
+
+                    </div>
+
+
+                    <!-- SEJARAH JAWATAN -->
+
+                    <div class="readiness-info-item">
+
+                        <span>
+                            Sejarah Jawatan
+                        </span>
+
+                        <strong id="readinessLeadership">
+                            0%
+                        </strong>
+
+                    </div>
+
+                </div>
 
             </div>
 
         </section>
 
-
-        <!-- ==============================
-             CONTENT GRID
-        =============================== -->
-
-        <section class="content-grid">
-
-
-            <!-- ==============================
-                 PERSONAL INFORMATION
-            =============================== -->
-
-            <div class="dashboard-card profile-card">
-
-                <div class="card-header">
-
-                    <div>
-                        <h3>Maklumat Peribadi</h3>
-                        <p>Ringkasan profil pengguna</p>
-                    </div>
-
-                    <a href="profile.html" class="view-link">
-                        Kemaskini
-                        <i class='bx bx-right-arrow-alt'></i>
-                    </a>
-
-                </div>
-
-
-                <div class="profile-info">
-
-                    <div class="profile-row">
-
-                        <span>Nama</span>
-
-                        <strong id="profileName">
-                            -
-                        </strong>
-
-                    </div>
-
-
-                    <div class="profile-row">
-
-                        <span>Staff ID</span>
-
-                        <strong id="profileStaffId">
-                            -
-                        </strong>
-
-                    </div>
-
-
-                    <div class="profile-row">
-
-                        <span>Gelaran</span>
-
-                        <strong id="profileTitle">
-                            -
-                        </strong>
-
-                    </div>
-
-
-                    <div class="profile-row">
-
-                        <span>Emel</span>
-
-                        <strong id="profileEmail">
-                            -
-                        </strong>
-
-                    </div>
-
-
-                    <div class="profile-row">
-
-                        <span>No. Telefon</span>
-
-                        <strong id="profilePhone">
-                            -
-                        </strong>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-<!-- ==============================
-     READINESS ANALYSIS
-============================== -->
-
-<section class="readiness-analysis">
-
-    <div class="dashboard-card readiness-chart-card">
-
-        <div class="card-header">
-
-            <div>
-                <h3>Analisis Kesediaan Kepimpinan</h3>
-
-                <p>
-                    Individual Talent Roadmap / CPD
-                </p>
-            </div>
-
-        </div>
-
-
-        <!-- SPIDER CHART -->
-
-        <div class="radar-chart-container">
-
-            <canvas id="readinessChart"></canvas>
-
-        </div>
-
-    </div>
-
-
-    <!-- READINESS INFORMATION -->
-
-    <div class="dashboard-card readiness-info-card">
-
-        <div class="card-header">
-
-            <div>
-                <h3>Leadership Readiness</h3>
-
-                <p>
-                    Ringkasan pencapaian berdasarkan
-                    maklumat yang telah diisi.
-                </p>
-            </div>
-
-        </div>
-
-
-        <div class="readiness-info">
-
-            <div class="readiness-info-item">
-
-                <span>PKA</span>
-
-                <strong id="readinessPka">
-                    0%
-                </strong>
-
-            </div>
-
-
-            <div class="readiness-info-item">
-
-                <span>PKI</span>
-
-                <strong id="readinessPki">
-                    0%
-                </strong>
-
-            </div>
-
-
-            <div class="readiness-info-item">
-
-                <span>Sejarah Jawatan</span>
-
-                <strong id="readinessLeadership">
-                    -
-                </strong>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
 
         <!-- ==============================
              SUMMARY CARDS
@@ -392,7 +466,9 @@
             <div class="summary-card">
 
                 <div class="summary-icon blue">
+
                     <i class='bx bx-book-open'></i>
+
                 </div>
 
                 <div class="summary-info">
@@ -419,7 +495,9 @@
             <div class="summary-card">
 
                 <div class="summary-icon purple">
+
                     <i class='bx bx-building-house'></i>
+
                 </div>
 
                 <div class="summary-info">
@@ -441,243 +519,29 @@
             </div>
 
 
-            <!-- JAWATAN -->
+            <!-- GRED LNPT -->
 
             <div class="summary-card">
 
                 <div class="summary-icon green">
-                    <i class='bx bx-briefcase'></i>
+
+                    <i class='bx bx-bar-chart-alt-2'></i>
+
                 </div>
 
                 <div class="summary-info">
 
                     <span>
-                        Sejarah Jawatan
+                        Gred LNPT
                     </span>
 
-                    <h3 id="positionCount">
-                        0
+                    <h3 id="lnptGrade">
+                        Tiada rekod LNPT
                     </h3>
 
-                    <p>
-                        Rekod jawatan
+                    <p class="summary-label">
+                        3 tahun terkini
                     </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-            <!-- ==============================
-                 TRAINING PROGRESS
-            =============================== -->
-
-            <div class="dashboard-card">
-
-                <div class="card-header">
-
-                    <div>
-
-                        <h3>Perkembangan Latihan</h3>
-
-                        <p>
-                            Pencapaian modul kepimpinan
-                        </p>
-
-                    </div>
-
-                    <a href="training.html" class="view-link">
-                        Kemaskini
-                        <i class='bx bx-right-arrow-alt'></i>
-                    </a>
-
-                </div>
-
-
-                <!-- PKA -->
-
-                <div class="training-progress">
-
-                    <div class="progress-top">
-
-                        <span>
-                            Pusat Kepimpinan Akademik (PKA)
-                        </span>
-
-                        <strong id="pkaPercentage">
-                            0%
-                        </strong>
-
-                    </div>
-
-                    <div class="progress-bar">
-
-                        <div
-                            id="pkaProgress"
-                            class="progress-fill">
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- PKI -->
-
-                <div class="training-progress">
-
-                    <div class="progress-top">
-
-                        <span>
-                            Pusat Kepimpinan Institusi (PKI)
-                        </span>
-
-                        <strong id="pkiPercentage">
-                            0%
-                        </strong>
-
-                    </div>
-
-                    <div class="progress-bar">
-
-                        <div
-                            id="pkiProgress"
-                            class="progress-fill">
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- ==============================
-                 EMPLOYMENT
-            =============================== -->
-
-            <div class="dashboard-card">
-
-                <div class="card-header">
-
-                    <div>
-
-                        <h3>Perjawatan</h3>
-
-                        <p>
-                            Ringkasan maklumat perjawatan
-                        </p>
-
-                    </div>
-
-                    <a href="employment.html" class="view-link">
-                        Kemaskini
-                        <i class='bx bx-right-arrow-alt'></i>
-                    </a>
-
-                </div>
-
-
-                <div class="employment-summary">
-
-                    <div class="employment-item">
-
-                        <span>
-                            Jawatan Hakiki
-                        </span>
-
-                        <strong id="mainPosition">
-                            -
-                        </strong>
-
-                    </div>
-
-
-                    <div class="employment-item">
-
-                        <span>
-                            Jabatan Hakiki
-                        </span>
-
-                        <strong id="mainDepartment">
-                            -
-                        </strong>
-
-                    </div>
-
-
-                    <div class="employment-item">
-
-                        <span>
-                            Gred
-                        </span>
-
-                        <strong id="salaryGrade">
-                            -
-                        </strong>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- ==============================
-                 ACADEMIC LEADERSHIP
-            =============================== -->
-
-            <div class="dashboard-card">
-
-                <div class="card-header">
-
-                    <div>
-
-                        <h3>Sejarah Jawatan Akademik</h3>
-
-                        <p>
-                            Pengalaman pentadbiran akademik
-                        </p>
-
-                    </div>
-
-                    <a href="academic-leadership.html" class="view-link">
-                        Kemaskini
-                        <i class='bx bx-right-arrow-alt'></i>
-                    </a>
-
-                </div>
-
-
-                <div class="leadership-summary">
-
-                    <div class="leadership-number">
-
-                        <span>
-                            Jumlah Rekod
-                        </span>
-
-                        <strong id="leadershipCount">
-                            0
-                        </strong>
-
-                    </div>
-
-
-                    <div class="leadership-number">
-
-                        <span>
-                            Tempoh
-                        </span>
-
-                        <strong id="duration_years">
-                            0 Tahun
-                        </strong>
-
-                    </div>
 
                 </div>
 
@@ -687,27 +551,305 @@
 
 
         <!-- ==============================
-             READINESS PREVIEW
+             TRAINING PROGRESS
         =============================== -->
 
+        <div class="dashboard-card">
 
-        <!-- MESSAGE -->
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        Perkembangan Latihan
+                    </h3>
+
+                    <p>
+                        Pencapaian modul kepimpinan
+                    </p>
+
+                </div>
+
+                <a href="training.html" class="view-link">
+
+                    Kemaskini
+
+                    <i class='bx bx-edit'></i>
+
+                </a>
+
+            </div>
+
+
+            <!-- PKA -->
+
+            <div class="training-progress">
+
+                <div class="progress-top">
+
+                    <span>
+                        Pusat Kepimpinan Akademik (PKA)
+                    </span>
+
+                    <strong id="pkaPercentage">
+                        0%
+                    </strong>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div id="pkaProgress" class="progress-fill"></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PKI -->
+
+            <div class="training-progress">
+
+                <div class="progress-top">
+
+                    <span>
+                        Pusat Kepimpinan Institusi (PKI)
+                    </span>
+
+                    <strong id="pkiPercentage">
+                        0%
+                    </strong>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div id="pkiProgress" class="progress-fill"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==============================
+             EMPLOYMENT
+        =============================== -->
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        Perjawatan
+                    </h3>
+
+                    <p>
+                        Ringkasan maklumat perjawatan
+                    </p>
+
+                </div>
+
+                <a href="employment.html" class="view-link">
+
+                    Kemaskini
+
+                    <i class='bx bx-edit'></i>
+
+                </a>
+
+            </div>
+
+
+            <div class="employment-summary">
+
+                <div class="employment-item">
+
+                    <span>
+                        Jawatan Hakiki
+                    </span>
+
+                    <strong id="mainPosition">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="employment-item">
+
+                    <span>
+                        Jabatan Hakiki
+                    </span>
+
+                    <strong id="mainDepartment">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="employment-item">
+
+                    <span>
+                        Gred
+                    </span>
+
+                    <strong id="salaryGrade">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==============================
+             ACADEMIC LEADERSHIP
+        =============================== -->
+
+        <section class="dashboard-section leadership-section">
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Sejarah Jawatan Pentadbir Akademik
+                        </h3>
+
+                        <p>
+                            Rekod jawatan pentadbir akademik yang pernah disandang
+                        </p>
+
+                    </div>
+
+                    <a href="academic-leadership.html" class="view-link">
+
+                        Kemaskini
+
+                        <i class='bx bx-edit'></i>
+
+                    </a>
+
+                </div>
+
+
+                <div id="leadershipHistoryList"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             PURATA LNPT
+        =============================== -->
+
+        <div class="dashboard-card lnpt-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        Purata LNPT
+                    </h3>
+
+                    <p>
+                        Purata markah LNPT bagi 3 tahun terkini
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- GAUGE -->
+
+            <div class="lnpt-gauge-wrapper">
+
+                <div class="lnpt-gauge-chart">
+
+                    <canvas id="lnptGauge"></canvas>
+
+                </div>
+
+
+                <!-- NILAI -->
+
+                <div class="lnpt-gauge-value">
+
+                    <strong id="lnptGaugeScore">
+                        0.00
+                    </strong>
+
+                    <span>
+                        / 100
+                    </span>
+
+                </div>
+
+
+                <!-- GRED -->
+
+                <div class="lnpt-gauge-grade">
+
+                    <span id="lnptGaugeGrade">
+                        Tiada rekod LNPT
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- TAHUN -->
+
+            <div class="lnpt-years">
+
+                <span>
+                    Berdasarkan rekod:
+                </span>
+
+                <strong id="lnptGaugeYears">
+                    -
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==============================
+             MESSAGE
+        =============================== -->
 
         <div id="message" class="message"></div>
 
 
-    </main>
+    </section>
+
+</main>
 
 
-    <!-- ==============================
-         SUPABASE
-    =============================== -->
+<!-- ==============================
+     SUPABASE
+=============================== -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script src="supabase.js"></script>
+
 <script src="dashboard.js"></script>
 
 </body>

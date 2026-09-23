@@ -641,24 +641,19 @@ function addLeadershipRow(record = null) {
 async function saveLeadershipHistory(userId) {
 
     const message =
-        document.getElementById(
-            "message"
-        );
-
+        document.getElementById("message");
 
     const rows =
         document.querySelectorAll(
             "#leadershipTableBody tr"
         );
 
-
     const records = [];
-
 
     try {
 
         // ======================================
-        // VALIDATE + CALCULATE
+        // VALIDATE + STORE
         // ======================================
 
         for (const row of rows) {
@@ -668,12 +663,10 @@ async function saveLeadershipHistory(userId) {
                     ".position-select"
                 ).value;
 
-
             const startDate =
                 row.querySelector(
                     ".start-date"
                 ).value;
-
 
             const endDate =
                 row.querySelector(
@@ -688,13 +681,12 @@ async function saveLeadershipHistory(userId) {
             if (!position) {
 
                 message.innerText =
-                    "Please select a position for every row.";
+                    "Sila pilih jawatan bagi setiap rekod.";
 
                 message.style.color =
                     "red";
 
                 return;
-
             }
 
 
@@ -705,13 +697,12 @@ async function saveLeadershipHistory(userId) {
             if (!startDate) {
 
                 message.innerText =
-                    "Please enter the start date.";
+                    "Sila masukkan tarikh mula.";
 
                 message.style.color =
                     "red";
 
                 return;
-
             }
 
 
@@ -722,13 +713,12 @@ async function saveLeadershipHistory(userId) {
             if (!endDate) {
 
                 message.innerText =
-                    "Please enter the end date.";
+                    "Sila masukkan tarikh tamat.";
 
                 message.style.color =
                     "red";
 
                 return;
-
             }
 
 
@@ -739,7 +729,6 @@ async function saveLeadershipHistory(userId) {
             const start =
                 new Date(startDate);
 
-
             const end =
                 new Date(endDate);
 
@@ -747,51 +736,74 @@ async function saveLeadershipHistory(userId) {
             if (end < start) {
 
                 message.innerText =
-                    "End date cannot be earlier than start date.";
+                    "Tarikh tamat tidak boleh lebih awal daripada tarikh mula.";
 
                 message.style.color =
                     "red";
 
                 return;
-
             }
 
 
             // ==================================
-            // CALCULATE DURATION
+            // CALCULATE DURATION YEARS
             // ==================================
 
-            const days =
-                (end - start) /
-                (1000 * 60 * 60 * 24);
+            let years =
+                end.getFullYear() -
+                start.getFullYear();
 
+            let months =
+                end.getMonth() -
+                start.getMonth();
+
+            let days =
+                end.getDate() -
+                start.getDate();
+
+
+            // ==================================
+            // ADJUST DAYS
+            // ==================================
+
+            if (days < 0) {
+
+                months--;
+
+                const previousMonth =
+                    new Date(
+                        end.getFullYear(),
+                        end.getMonth(),
+                        0
+                    );
+
+                days +=
+                    previousMonth.getDate();
+            }
+
+
+            // ==================================
+            // ADJUST MONTHS
+            // ==================================
+
+            if (months < 0) {
+
+                years--;
+
+                months += 12;
+            }
+
+
+            // ==================================
+            // CALCULATE DURATION YEARS
+            // ==================================
 
             const durationYears =
-                Math.round(
-                    (days / 365.25) * 100
-                ) / 100;
+                years +
+                (months / 12) +
+                (days / 365);
 
-
-            // ==================================
-            // GET SCORE
-            // ==================================
-
-            const score =
-                positionScores[position];
-
-
-            // ==================================
-            // TOTAL SCORE
-            // ==================================
-
-            const totalScore =
-                Math.round(
-                    score *
-                    durationYears *
-                    100
-                ) / 100;
-
-
+            const score = positionScores[position] || 0;
             // ==================================
             // STORE
             // ==================================
@@ -806,11 +818,14 @@ async function saveLeadershipHistory(userId) {
 
                 end_date: endDate,
 
-                duration_years: durationYears,
+                duration_years:
+                    Math.round(
+                        durationYears * 100
+                    ) / 100,
 
                 score: score,
 
-                total_score: totalScore
+                total_score: 0
 
             });
 
@@ -823,7 +838,6 @@ async function saveLeadershipHistory(userId) {
 
         message.innerText =
             "Menyimpan...";
-
 
         message.style.color =
             "#555";
@@ -856,18 +870,14 @@ async function saveLeadershipHistory(userId) {
                 deleteError
             );
 
-
             message.innerText =
-                "Failed to update data: " +
+                "Gagal mengemaskini data: " +
                 deleteError.message;
-
 
             message.style.color =
                 "red";
 
-
             return;
-
         }
 
 
@@ -895,20 +905,15 @@ async function saveLeadershipHistory(userId) {
                     insertError
                 );
 
-
                 message.innerText =
                     "Gagal menyimpan data: " +
                     insertError.message;
 
-
                 message.style.color =
                     "red";
 
-
                 return;
-
             }
-
         }
 
 
@@ -917,8 +922,7 @@ async function saveLeadershipHistory(userId) {
         // ======================================
 
         message.innerText =
-            "Sejarah Jawatan Pentadbir Akademik berjaya disimpan!";
-
+            "Sejarah Jawatan Pentadbir Akademik berjaya dikemaskini!";
 
         message.style.color =
             "green";
@@ -930,38 +934,28 @@ async function saveLeadershipHistory(userId) {
         );
 
 
+        // ======================================
+        // RELOAD DATA
+        // ======================================
+
+        await loadLeadershipHistory(userId);
+
+
     } catch (error) {
 
         console.error(
             "Unexpected Error:",
-            Ralat
+            error
         );
-
 
         message.innerText =
             "Ralat: " +
             error.message;
 
-
         message.style.color =
             "red";
 
+
     }
-
-    const logoutBtn = document.getElementById("logoutBtn");
-
-if (logoutBtn) {
-    logoutBtn.addEventListener("click", async () => {
-
-        const { error } = await supabaseClient.auth.signOut();
-
-        if (error) {
-            console.error(error);
-            alert("Gagal log keluar.");
-            return;
-        }
-
-        window.location.href = "index.html";
-    });
 }
-}
+
